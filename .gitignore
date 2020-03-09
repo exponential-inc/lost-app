@@ -20,6 +20,8 @@ DerivedData
 *.hmap
 *.ipa
 *.xcuserstate
+project.xcworkspace
+ios/Podfile.lock
 
 # Android/IntelliJ
 #
@@ -29,12 +31,17 @@ build/
 local.properties
 *.iml
 
+# Visual Studio Code
+#
+.vscode/
+
 # node.js
 #
 node_modules/
 npm-debug.log
 yarn-error.log
 package-lock.json
+yarn.lock
 
 # BUCK
 buck-out/
@@ -58,3 +65,12 @@ buck-out/
 
 # CocoaPods
 /ios/Pods/
+
+*/**/my-upload-key.keystore
+
+*/**/GoogleService-Info.plist
+*/**/google-services.json
+
+*/**/appcenter-config.json
+*/**/AppCenter-Config.plist
+package-lock.json
