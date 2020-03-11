@@ -31,7 +31,6 @@ const App = () => {
           screenOptions={({route}) => ({
             tabBarIcon: ({focused, color, size}) => {
               let iconName;
-
               switch (route.name) {
                 case "Home":
                   iconName = focused ? 'home-variant' : 'home-variant-outline';

@@ -1,10 +1,12 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
 
 const HomePageC = () => {
   return (
-    <View></View>
+    <View>
+      <Text style={{width: '100%', textAlign: 'center', paddingTop: 100}}>Home</Text>
+    </View>
   )
 }
 

@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 const SettingsPageC = () => {
   return (
     <View>
-      <Text>Hello</Text>
+      <Text style={{width: '100%', textAlign: 'center', paddingTop: 100}}>Settings</Text>
     </View>
   )
 }
