@@ -8,13 +8,13 @@
 
 import 'react-native-gesture-handler';
 import React from 'react';
-import {View, Text} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {Provider} from 'react-redux';
+import {Provider, SafeAreaView } from 'react-redux';
 import {reducer} from './src/store/reducer';
 import {createStore} from 'redux';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import {BottomNavigation, BottomNavigationTab, Layout, Text} from '@ui-kitten/components';
 
 import {HomePage} from './src/pages/Home';
 import {SettingsPage} from './src/pages/Settings';
@@ -29,7 +29,7 @@ const App = () => {
     <Provider store={store}>
       <NavigationContainer>
         <Tab.Navigator
-          screenOptions={({route}) => ({
+          screenOptions={({navigation, route}) => ({
             tabBarIcon: ({focused, color, size}) => {
               let iconName;
               switch (route.name) {
