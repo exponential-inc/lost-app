@@ -1,22 +1,25 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { Layout, Text } from '@ui-kitten/components';
 import { connect } from 'react-redux';
 
-const FindPageC = () => {
+import { TouchableShadow } from '../../components/Shadow/Touchable';
+import { PageHeader } from '../../components/Page/PageHeader';
+
+const FindPageC = (props: any) => {
   return (
-    <View>
-      <Text style={{width: '100%', textAlign: 'center', paddingTop: 100}}>Find</Text>
-    </View>
+    <Layout style={{height: '100%'}}>
+      <PageHeader theme={props.theme} title="Find" />
+    </Layout>
   )
 }
 
-const mapStateToProps = (state: Object) => {
+const mapStateToProps = (state: any) => {
   return {
-
+    theme: state.theme,
   }
 }
 
-const mapDispatchToProps = (dispatch: Object) => {
+const mapDispatchToProps = (dispatch: any) => {
   return {
 
   }

@@ -1,25 +1,31 @@
 import React from 'react';
-import { View, Text } from 'react-native';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
+import {Layout, Text} from '@ui-kitten/components';
 
-const HomePageC = () => {
+import {PageHeader} from '../../components/Page/PageHeader';
+import {TouchableShadow} from '../../components/Shadow/Touchable';
+
+const HomePageC = (props: any) => {
   return (
-    <View>
-      <Text style={{width: '100%', textAlign: 'center', paddingTop: 100}}>Home</Text>
-    </View>
-  )
-}
+    <Layout style={{height: '100%'}}>
+      <PageHeader theme={props.theme} title="Home" />
+      <TouchableShadow theme={props.theme}>
+        <Layout style={{marginHorizontal: 15}}>
+          <Text>Hello</Text>
+        </Layout>
+      </TouchableShadow>
+    </Layout>
+  );
+};
 
-const mapStateToProps = (state: Object) => {
+const mapStateToProps = (state: any) => {
   return {
+    theme: state.theme,
+  };
+};
 
-  }
-}
-
-const mapDispatchToProps = (dispatch: Object) => {
-  return {
-
-  }
-}
+const mapDispatchToProps = (dispatch: any) => {
+  return {};
+};
 
 export const HomePage = connect(mapStateToProps, mapDispatchToProps)(HomePageC);
