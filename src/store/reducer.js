@@ -3,7 +3,7 @@ const initialState = {
   theme: 'dark', //dark/light
 }
 
-export const reducer = (state, action) => {
+export const reducer = (state = initialState, action) => {
   switch (action.type) {
     default:
       return {

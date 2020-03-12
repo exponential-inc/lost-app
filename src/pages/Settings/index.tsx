@@ -1,22 +1,29 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { Layout, Text, List, ListItem } from '@ui-kitten/components';
 import { connect } from 'react-redux';
+import { SafeAreaView } from 'react-native';
 
+const data = ['Theme', 'Password']
 const SettingsPageC = () => {
+  const renderItem = ({ item, index }) => (
+    <ListItem title={`${item} ${index + 1}`}/>
+  );
   return (
-    <View>
-      <Text style={{width: '100%', textAlign: 'center', paddingTop: 100}}>Settings</Text>
-    </View>
+    <Layout style={{height: '100%'}}>
+      <List data={data} renderItem={renderItem}>
+        <Text>Hello</Text>
+      </List>
+    </Layout>
   )
 }
 
-const mapStateToProps = (state: Object) => {
+const mapStateToProps = (state: any) => {
+  console.log(state.theme);
   return {
+  };
+};
 
-  }
-}
-
-const mapDispatchToProps = (dispatch: Object) => {
+const mapDispatchToProps = (dispatch: any) => {
   return {
 
   }
