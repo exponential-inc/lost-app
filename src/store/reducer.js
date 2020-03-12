@@ -1,5 +1,6 @@
 const initialState = {
-
+  orientation: 'portrait', //portrait/landscape
+  theme: 'dark', //dark/light
 }
 
 export const reducer = (state, action) => {

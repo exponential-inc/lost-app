@@ -18,6 +18,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import {HomePage} from './src/pages/Home';
 import {SettingsPage} from './src/pages/Settings';
+import {FindPage} from './src/pages/Find';
 
 const store = createStore(reducer);
 
@@ -32,11 +33,14 @@ const App = () => {
             tabBarIcon: ({focused, color, size}) => {
               let iconName;
               switch (route.name) {
-                case "Home":
+                case 'Home':
                   iconName = focused ? 'home-variant' : 'home-variant-outline';
                   break;
                 case 'Settings':
                   iconName = focused ? 'settings' : 'settings-outline';
+                  break;
+                case 'Find':
+                  iconName = focused ? 'map-marker' : 'map-marker-outline';
                   break;
                 default:
                   iconName = 'alert-circle';
@@ -48,6 +52,7 @@ const App = () => {
             activeTintColor: 'tomato',
             inactiveTintColor: 'gray',
           }}>
+          <Tab.Screen name="Find" component={FindPage} />
           <Tab.Screen name="Home" component={HomePage} />
           <Tab.Screen name="Settings" component={SettingsPage} />
         </Tab.Navigator>
