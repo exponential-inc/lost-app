@@ -10,10 +10,10 @@ export const HeaderText = (props: {children?: string}) => {
         fontSize: 30,
         ...Platform.select({
           android: {
-            // fontFamily: 'Montserrat 700',
+            fontFamily: 'Montserrat-Black',
           },
           ios: {
-            // fontFamily: 'Montserrat-Regular',
+            fontFamily: 'Montserrat',
             fontWeight: '700',
           },
         }),
