@@ -37,8 +37,8 @@ const App = (props: any) => {
           flex: 0,
           backgroundColor:
             props.theme === 'dark'
-              ? themeColor.secondaryBG
-              : themeColor.secondaryBG,
+              ? themeColor.linkBG
+              : themeColor.linkBG,
         }}
       />
       <SafeAreaView
@@ -46,14 +46,15 @@ const App = (props: any) => {
           flex: 1,
           backgroundColor:
             props.theme === 'dark'
-              ? themeColor.primaryBG
-              : themeColor.primaryBG,
+              ? themeColor.secondaryBG
+              : themeColor.secondaryBG,
         }}>
         <ApplicationProvider
           mapping={mapping}
           theme={props.theme === 'dark' ? darkTheme : lightTheme}>
           <NavigationContainer>
             <Tab.Navigator
+            initialRouteName={'Home'}
               screenOptions={({navigation, route}) => ({
                 tabBarIcon: ({focused, color, size}) => {
                   let iconName;
@@ -77,9 +78,10 @@ const App = (props: any) => {
               })}
               tabBarOptions={{
                 activeTintColor: themeColor.contrast,
-                activeBackgroundColor: themeColor.primaryBG,
+                activeBackgroundColor: themeColor.secondaryBG,
                 inactiveTintColor: 'gray',
-                inactiveBackgroundColor: themeColor.primaryBG,
+                inactiveBackgroundColor: themeColor.secondaryBG,
+                style: {borderTopColor: themeColor.primaryBG}
               }}>
               <Tab.Screen name="Find" component={FindPage} />
               <Tab.Screen name="Home" component={HomePage} />

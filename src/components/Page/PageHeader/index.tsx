@@ -13,7 +13,7 @@ export const PageHeader = (props: {theme: any, title: string}) => {
         alignItems: 'center',
         paddingTop: 36,
         marginBottom: 5,
-        backgroundColor: themeColor.secondaryBG
+        backgroundColor: themeColor.linkBG
       }}>
         <StatusBar barStyle={props.theme === 'dark' ? 'light-content' : 'dark-content'}/>
       <Layout style={{paddingLeft: 30, paddingBottom: 30, backgroundColor: 'transparent'}}>
