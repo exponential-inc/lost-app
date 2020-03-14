@@ -3,18 +3,21 @@ import { Platform, StatusBar } from 'react-native';
 import { Text, Layout } from '@ui-kitten/components';
 
 import {HeaderText} from '../../Text/Header';
+import { K } from '../../../store/constants';
 export const PageHeader = (props: {theme: any, title: string}) => {
-    return (
+  const themeColor = props.theme === 'dark' ? K.color.dark : K.color.light
+  return (
       <Layout
       style={{
         flexDirection: 'row',
         alignItems: 'center',
-        marginTop: 40,
-        marginBottom: 5
+        paddingTop: 36,
+        marginBottom: 5,
+        backgroundColor: themeColor.secondaryBG
       }}>
         <StatusBar barStyle={props.theme === 'dark' ? 'light-content' : 'dark-content'}/>
-      <Layout style={{paddingLeft: 20, paddingTop: 30, paddingBottom: 10}}>
-        <HeaderText>
+      <Layout style={{paddingLeft: 30, paddingBottom: 30, backgroundColor: 'transparent'}}>
+        <HeaderText color={themeColor.lightText}>
           {props.title}
         </HeaderText>
       </Layout>
