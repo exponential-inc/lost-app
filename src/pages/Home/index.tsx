@@ -3,17 +3,19 @@ import {connect} from 'react-redux';
 import {Layout, Text} from '@ui-kitten/components';
 
 import {PageHeader} from '../../components/Page/PageHeader';
-import {TouchableShadow} from '../../components/Shadow/Touchable';
+import {PageList} from '../../components/Page/PageList';
+import {ViewShadow} from '../../components/Shadow/View';
 
 const HomePageC = (props: any) => {
   return (
     <Layout style={{height: '100%'}}>
-      <PageHeader theme={props.theme} title="Home" />
-      <TouchableShadow theme={props.theme}>
-        <Layout style={{marginHorizontal: 15}}>
-          <Text>Hello</Text>
-        </Layout>
-      </TouchableShadow>
+      <PageList title="Home" theme={props.theme}>
+        <ViewShadow theme={props.theme} style={{height: 100, backgroundColor: "#E41C1C", borderRadius: 20 }}>
+          <Layout style={{backgroundColor: 'transparent'}}>
+            <Text>Hello</Text>
+          </Layout>
+        </ViewShadow>
+      </PageList>
     </Layout>
   );
 };

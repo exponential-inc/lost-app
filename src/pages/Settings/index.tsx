@@ -2,11 +2,12 @@ import React from 'react';
 import {Layout, Text, List, ListItem} from '@ui-kitten/components';
 import {connect} from 'react-redux';
 
-import {ViewShadow} from '../../components/Shadow/View';
+import {PageList} from '../../components/Page/PageList';
 import {PageHeader} from '../../components/Page/PageHeader';
+import {ViewShadow} from '../../components/Shadow/View';
 
 const SettingsPageC = (props: any) => {
-  const data = [
+  const list1 = [
     {
       title: 'Toggle theme',
       onPress: () => {
@@ -19,31 +20,48 @@ const SettingsPageC = (props: any) => {
     },
   ];
 
+  const list2 = [
+    {
+      title: 'About',
+      onPress: () => {},
+    },
+    {
+      title: 'Tell A Friend',
+      onPress: () => {},
+    },
+    {
+      title: 'Report A Bug',
+      onPress: () => {},
+    },
+  ];
+
   const renderItem = ({item, index}) => (
-    <ListItem title={`${item.title}`} onPress={item.onPress} style={{height: 50}} />
+    <ListItem
+      title={`${item.title}`}
+      onPress={item.onPress}
+      style={{height: 50}}
+    />
   );
   return (
     <Layout style={{height: '100%'}}>
-      <PageHeader title="Settings" theme={props.theme} />
-      <Layout
-        style={{marginHorizontal: 20, height: '100%', position: 'relative'}}>
-        <Layout
-          style={{
-            position: 'absolute',
-            height: '100%',
-            left: 0,
-            right: 0,
-            top: -10,
-            borderRadius: 20
-          }}>
-            
-          <ViewShadow
-            theme={props.theme}
-            style={{height: 100}}>
-            <List data={data} renderItem={renderItem} scrollEnabled={false} style={{borderRadius: 20}}/>
-          </ViewShadow>
-        </Layout>
-      </Layout>
+      <PageList title={"Settings"} theme={props.theme}>
+        <ViewShadow theme={props.theme} style={{height: 100}}>
+          <List
+            data={list1}
+            renderItem={renderItem}
+            scrollEnabled={false}
+            style={{borderRadius: 20}}
+          />
+        </ViewShadow>
+        <ViewShadow theme={props.theme} style={{height: 150, marginTop: 20}}>
+          <List
+            data={list2}
+            renderItem={renderItem}
+            scrollEnabled={false}
+            style={{borderRadius: 20}}
+          />
+        </ViewShadow>
+      </PageList>
     </Layout>
   );
 };
