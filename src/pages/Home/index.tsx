@@ -10,16 +10,14 @@ import {ViewShadow} from '../../components/Shadow/View';
 const HomePageC = (props: any) => {
   return (
     <Layout style={{height: '100%'}}>
-      <PageList title="Home" theme={props.theme}>
-        <ViewShadow theme={props.theme} style={{height: 100, backgroundColor: "#E41C1C", borderRadius: 20 }}>
-          <Layout style={{backgroundColor: 'transparent'}}>
-            <Text onPress={() => {
-              console.log('call')
-              return phonecall('+6590022610', true)
-            }}>Hello</Text>
+      <PageHeader title="Home" theme={props.theme} />
+      <Layout style={{marginHorizontal: 20}}>
+        <ViewShadow theme={props.theme} style={{marginTop: -20}}>
+          <Layout style={{overflow: 'hidden', borderRadius: 20}}>
+            <Text>Home</Text>
           </Layout>
         </ViewShadow>
-      </PageList>
+      </Layout>
     </Layout>
   );
 };

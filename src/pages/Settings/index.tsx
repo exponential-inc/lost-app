@@ -1,8 +1,8 @@
 import React from 'react';
+import {ScrollView} from 'react-native';
 import {Layout, Text, List, ListItem} from '@ui-kitten/components';
 import {connect} from 'react-redux';
 
-import {PageList} from '../../components/Page/PageList';
 import {PageHeader} from '../../components/Page/PageHeader';
 import {ViewShadow} from '../../components/Shadow/View';
 
@@ -35,33 +35,39 @@ const SettingsPageC = (props: any) => {
     },
   ];
 
-  const renderItem = ({item, index}) => (
-    <ListItem
-      title={`${item.title}`}
-      onPress={item.onPress}
-      style={{height: 50}}
-    />
-  );
+  const renderItem = ({item, index}) => {
+    return (
+      <ListItem
+        title={`${item.title}`}
+        onPress={item.onPress}
+        style={{height: 50}}
+      />
+    );
+  };
+
   return (
-    <Layout style={{height: '100%'}}>
-      <PageList title={"Settings"} theme={props.theme}>
-        <ViewShadow theme={props.theme} style={{height: 100}}>
-          <List
-            data={list1}
-            renderItem={renderItem}
-            scrollEnabled={false}
-            style={{borderRadius: 20}}
-          />
-        </ViewShadow>
-        <ViewShadow theme={props.theme} style={{height: 150, marginTop: 20}}>
-          <List
-            data={list2}
-            renderItem={renderItem}
-            scrollEnabled={false}
-            style={{borderRadius: 20}}
-          />
-        </ViewShadow>
-      </PageList>
+    <Layout style={{height: '100%', flex: 1}}>
+      <ScrollView>
+        <PageHeader title="Settings" theme={props.theme} />
+        <Layout style={{marginHorizontal: 20}}>
+          <ViewShadow theme={props.theme} style={{height: 100, marginTop: -20}}>
+            <List
+              data={list1}
+              renderItem={renderItem}
+              scrollEnabled={false}
+              style={{borderRadius: 20, overflow: 'hidden'}}
+            />
+          </ViewShadow>
+          <ViewShadow theme={props.theme} style={{height: 150, marginTop: 20, marginBottom: 20}}>
+            <List
+              data={list2}
+              renderItem={renderItem}
+              scrollEnabled={false}
+              style={{overflow: 'hidden', borderRadius: 20}}
+            />
+          </ViewShadow>
+        </Layout>
+      </ScrollView>
     </Layout>
   );
 };

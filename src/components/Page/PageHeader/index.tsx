@@ -11,9 +11,9 @@ export const PageHeader = (props: {theme: any, title: string}) => {
       style={{
         flexDirection: 'row',
         alignItems: 'center',
-        paddingTop: 536,
+        paddingTop: 800+36,
         marginBottom: 5,
-        marginTop: -500,
+        marginTop: -800,
         backgroundColor: themeColor.linkBG
       }}>
         <StatusBar barStyle={props.theme === 'dark' ? 'light-content' : 'dark-content'}/>
