@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-  package="com.lost">
+  package="com.ryanthe.lostapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
 

@@ -1,4 +1,4 @@
-package com.lost;
+package com.ryanthe.lostapp;
 
 import com.facebook.react.ReactActivity;
 
