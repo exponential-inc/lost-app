@@ -1,19 +1,23 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {Layout, Text} from '@ui-kitten/components';
+import {phonecall} from 'react-native-communications';
 
 import {PageHeader} from '../../components/Page/PageHeader';
-import {TouchableShadow} from '../../components/Shadow/Touchable';
+import {PageList} from '../../components/Page/PageList';
+import {ViewShadow} from '../../components/Shadow/View';
 
 const HomePageC = (props: any) => {
   return (
     <Layout style={{height: '100%'}}>
-      <PageHeader theme={props.theme} title="Home" />
-      <TouchableShadow theme={props.theme}>
-        <Layout style={{marginHorizontal: 15}}>
-          <Text>Hello</Text>
-        </Layout>
-      </TouchableShadow>
+      <PageHeader title="Home" theme={props.theme} />
+      <Layout style={{marginHorizontal: 20}}>
+        <ViewShadow theme={props.theme} style={{marginTop: -20}}>
+          <Layout style={{overflow: 'hidden', borderRadius: 20}}>
+            <Text>Home</Text>
+          </Layout>
+        </ViewShadow>
+      </Layout>
     </Layout>
   );
 };

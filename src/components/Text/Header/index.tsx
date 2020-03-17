@@ -1,19 +1,21 @@
 import React from 'react';
-import {Platform} from 'react-native';
+import {Platform, TextStyle} from 'react-native';
 import {Text} from '@ui-kitten/components';
 
-export const HeaderText = (props: {children?: string}) => {
+export const HeaderText = (props: {children?: string, color?: string, style?: TextStyle }) => {
   return (
     <Text
       style={{
-        lineHeight: 30,
-        fontSize: 30,
+        ...props.style,
+        color: props.color ?? 'black',
+        lineHeight: 41,
+        fontSize: 34,
         ...Platform.select({
           android: {
-            // fontFamily: 'Montserrat 700',
+            // fontFamily: 'Montserrat-Black',
           },
           ios: {
-            // fontFamily: 'Montserrat-Regular',
+            // fontFamily: 'Montserrat',
             fontWeight: '700',
           },
         }),

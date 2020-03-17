@@ -1,4 +1,4 @@
-package com.lost;
+package com.ryanthe.lostapp;
 
 import android.app.Application;
 import android.content.Context;
