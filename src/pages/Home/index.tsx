@@ -1,25 +1,35 @@
 import React from 'react';
-import { View, Text } from 'react-native';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
+import {Layout, Text} from '@ui-kitten/components';
+import {phonecall} from 'react-native-communications';
 
-const HomePageC = () => {
+import {PageHeader} from '../../components/Page/PageHeader';
+import {PageList} from '../../components/Page/PageList';
+import {ViewShadow} from '../../components/Shadow/View';
+
+const HomePageC = (props: any) => {
   return (
-    <View>
-      <Text style={{width: '100%', textAlign: 'center', paddingTop: 100}}>Home</Text>
-    </View>
-  )
-}
+    <Layout style={{height: '100%'}}>
+      <PageHeader title="Home" theme={props.theme} />
+      <Layout style={{marginHorizontal: 20}}>
+        <ViewShadow theme={props.theme} style={{marginTop: -20}}>
+          <Layout style={{overflow: 'hidden', borderRadius: 20}}>
+            <Text>Home</Text>
+          </Layout>
+        </ViewShadow>
+      </Layout>
+    </Layout>
+  );
+};
 
-const mapStateToProps = (state: Object) => {
+const mapStateToProps = (state: any) => {
   return {
+    theme: state.theme,
+  };
+};
 
-  }
-}
-
-const mapDispatchToProps = (dispatch: Object) => {
-  return {
-
-  }
-}
+const mapDispatchToProps = (dispatch: any) => {
+  return {};
+};
 
 export const HomePage = connect(mapStateToProps, mapDispatchToProps)(HomePageC);
