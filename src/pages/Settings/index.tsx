@@ -12,15 +12,13 @@ import {K} from '../../store/constants';
 import {PageHeader} from '../../components/Page/PageHeader';
 import {ViewShadow} from '../../components/Shadow/View';
 
-const SettingsPageC = (props: any) => {
+const SettingsPageC = (props: any, {navigation}) => {
   const themeColor = props.theme === 'dark' ? K.color.dark : K.color.light;
 
   const list1 = [
     {
-      title: 'Toggle theme',
-      onPress: () => {
-        props.toggleTheme();
-      },
+      title: 'Change Theme',
+      onPress: () => {props.navigation.navigate('Theme')},
     },
     {
       title: 'Privacy',
