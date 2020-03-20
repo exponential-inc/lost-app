@@ -111,6 +111,10 @@ const SettingsPageC = (props: any) => {
         props.toggleSettingsModal(true, ['Bug Report', <Text style={{color: themeColor.primaryText}}>Report</Text>]);
       },
     },
+    {
+      title: 'Leave a review',
+      onPress: () => {},
+    },
   ];
 
   const renderItem = ({item, index}) => {
