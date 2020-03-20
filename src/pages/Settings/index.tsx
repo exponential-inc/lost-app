@@ -1,5 +1,5 @@
 import React, {ReactNode} from 'react';
-import {Text, View, ScrollView, Image} from 'react-native';
+import {Text, View, ScrollView, Image, Linking} from 'react-native';
 import {Layout, List, ListItem} from '@ui-kitten/components';
 import {connect} from 'react-redux';
 import Modal, {
@@ -26,7 +26,10 @@ const SettingsPageC = (props: any) => {
     {
       title: 'Privacy',
       onPress: () => {
-        props.toggleSettingsModal(true, ['Privacy Notice', <Text style={{color: themeColor.primaryText}}>Privacy</Text>]);
+        props.toggleSettingsModal(true, [
+          'Privacy Notice',
+          <Text style={{color: themeColor.primaryText}}>Privacy</Text>,
+        ]);
       },
     },
   ];
@@ -81,19 +84,32 @@ const SettingsPageC = (props: any) => {
                 Made with ♡, {`\n`}
                 Exponential Inc.
               </Text>
-              <Image
-                style={{
-                  width: 40,
-                  height: 40,
-                  marginVertical: 20,
-                  alignSelf: 'center',
-                }}
-                source={
-                  props.theme === 'dark'
-                    ? require('../../../assets/images/company-icon-dark.png')
-                    : require('../../../assets/images/company-icon-light.png')
-                }
-              />
+              <View
+              onTouchStart={() => {
+                  Linking.canOpenURL('https://www.ryanthe.com').then(
+                    supported => {
+                      if (supported) {
+                        Linking.openURL('https://www.ryanthe.com');
+                      } else {
+                        console.log("Error: Can't open URL");
+                      }
+                    },
+                  );
+                }}>
+                <Image
+                  style={{
+                    width: 40,
+                    height: 40,
+                    marginVertical: 20,
+                    alignSelf: 'center',
+                  }}
+                  source={
+                    props.theme === 'dark'
+                      ? require('../../../assets/images/company-icon-dark.png')
+                      : require('../../../assets/images/company-icon-light.png')
+                  }
+                />
+              </View>
             </View>
           </View>,
         ]);
@@ -102,18 +118,32 @@ const SettingsPageC = (props: any) => {
     {
       title: 'Tell A Friend',
       onPress: () => {
-        props.toggleSettingsModal(true, ['Share', <Text style={{color: themeColor.primaryText}}>Share</Text>]);
+        props.toggleSettingsModal(true, [
+          'Share',
+          <Text style={{color: themeColor.primaryText}}>Share</Text>,
+        ]);
       },
     },
     {
       title: 'Report A Bug',
       onPress: () => {
-        props.toggleSettingsModal(true, ['Bug Report', <Text style={{color: themeColor.primaryText}}>Report</Text>]);
+        props.toggleSettingsModal(true, [
+          'Bug Report',
+          <Text style={{color: themeColor.primaryText}}>Report</Text>,
+        ]);
       },
     },
     {
-      title: 'Leave a review',
-      onPress: () => {},
+      title: 'Leave A Review',
+      onPress: () => {
+        Linking.canOpenURL('https://www.ryanthe.com').then(supported => {
+          if (supported) {
+            Linking.openURL('https://www.ryanthe.com');
+          } else {
+            console.log("Error: Can't open URL");
+          }
+        });
+      },
     },
   ];
 
@@ -147,7 +177,7 @@ const SettingsPageC = (props: any) => {
           </ViewShadow>
           <ViewShadow
             theme={props.theme}
-            style={{height: 150, marginTop: 20, marginBottom: 20}}>
+            style={{height: 200, marginTop: 20, marginBottom: 20}}>
             <List
               data={list2}
               renderItem={renderItem}
