@@ -8,7 +8,7 @@ import { PageHeader } from '../../components/Page/PageHeader';
 const FindPageC = (props: any) => {
   return (
     <Layout style={{height: '100%'}}>
-      <PageHeader theme={props.theme} title="Find" type='small' />
+      <PageHeader theme={props.theme} title="Find" type='small' bottomBar={false} navigation={props.navigation}/>
     </Layout>
   )
 }

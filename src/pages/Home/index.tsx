@@ -10,7 +10,7 @@ const HomePageC = (props: any) => {
   return (
     <Layout style={{height: '100%'}}>
       <ScrollView>
-        <PageHeader title="Home" theme={props.theme} type='large' />
+        <PageHeader title="Home" theme={props.theme} type='large' navigation={props.navigation}/>
         <Layout style={{marginHorizontal: 20}}>
           <ViewShadow theme={props.theme} style={{marginTop: -20}}>
             <Layout style={{overflow: 'hidden', borderRadius: 20}}>

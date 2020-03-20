@@ -1,6 +1,18 @@
 import React from 'react';
-import {Text} from 'react-native';
+import {Text, AsyncStorage} from 'react-native';
 import { Appearance } from 'react-native-appearance';
+
+_retrieveData = async () => {
+  try {
+    const value = await AsyncStorage.getItem('TASKS');
+    if (value !== null) {
+      // We have data!!
+      console.log(value);
+    }
+  } catch (error) {
+    // Error retrieving data
+  }
+};
 
 const initialState = {
   orientation: 'portrait', //portrait/landscape

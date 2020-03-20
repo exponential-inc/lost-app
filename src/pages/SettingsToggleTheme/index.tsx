@@ -39,14 +39,14 @@ const SettingsToggleThemePageC = (props: any) => {
         title={`${item.title}`}
         onPress={item.onPress}
         style={{height: 50, ...selectedStyle}}
-        icon={() => item.selected ? <Icon name={'checkbox-marked-circle'} size={20} color={themeColor.contrast} style={{position: "absolute", right: 10, top: 15}} /> : <View style={{width: 0, marginHorizontal: 0, paddingHorizontal: 0}}/>}
+        icon={() => item.selected ? <Icon name={'check'} size={20} color={themeColor.contrast} style={{position: "absolute", right: 10, top: 15}} /> : <View style={{width: 0, marginHorizontal: 0, paddingHorizontal: 0}}/>}
       />
     );
   };
 
   return (
     <Layout style={{height: '100%', flex: 1}}>
-      <PageHeader title="Theme" theme={props.theme} type='small' />
+      <PageHeader title="Theme" theme={props.theme} type='small' navigation={props.navigation} leadingButton='arrow-left'/>
       <Layout style={{marginHorizontal: 20}}>
         <ViewShadow theme={props.theme} style={{height: 150, marginTop: -20}}>
           <List
