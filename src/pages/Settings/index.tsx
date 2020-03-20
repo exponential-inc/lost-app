@@ -33,6 +33,10 @@ const SettingsPageC = (props: any) => {
       title: 'Report A Bug',
       onPress: () => {},
     },
+    {
+      title: 'Leave a review',
+      onPress: () => {},
+    },
   ];
 
   const renderItem = ({item, index}) => {
@@ -58,7 +62,7 @@ const SettingsPageC = (props: any) => {
               style={{borderRadius: 20, overflow: 'hidden'}}
             />
           </ViewShadow>
-          <ViewShadow theme={props.theme} style={{height: 150, marginTop: 20, marginBottom: 20}}>
+          <ViewShadow theme={props.theme} style={{height: 200, marginTop: 20, marginBottom: 20}}>
             <List
               data={list2}
               renderItem={renderItem}
