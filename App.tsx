@@ -41,7 +41,6 @@ const SettingsPageNest = () => {
 };
 
 Appearance.addChangeListener(({ colorScheme }) => {
-  console.log('change');
   store.dispatch({type: 'SET_THEME_NATIVE', theme: colorScheme})
 });
 

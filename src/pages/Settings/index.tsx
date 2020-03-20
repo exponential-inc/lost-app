@@ -70,7 +70,7 @@ const SettingsPageC = (props: any, {navigation}) => {
   return (
     <Layout style={{height: '100%', flex: 1}}>
       <ScrollView>
-        <PageHeader title="Settings" theme={props.theme} />
+        <PageHeader title="Settings" theme={props.theme} type='large' />
         <Layout style={{marginHorizontal: 20}}>
           <ViewShadow theme={props.theme} style={{height: 100, marginTop: -20}}>
             <List

@@ -46,7 +46,7 @@ const SettingsToggleThemePageC = (props: any) => {
 
   return (
     <Layout style={{height: '100%', flex: 1}}>
-      <PageHeader title="Theme" theme={props.theme} />
+      <PageHeader title="Theme" theme={props.theme} type='small' />
       <Layout style={{marginHorizontal: 20}}>
         <ViewShadow theme={props.theme} style={{height: 150, marginTop: -20}}>
           <List
