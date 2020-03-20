@@ -6,7 +6,6 @@ export const HeaderText = (props: {children?: string, color?: string, style?: Te
   return (
     <Text
       style={{
-        ...props.style,
         color: props.color ?? 'black',
         lineHeight: 41,
         fontSize: 34,
@@ -19,6 +18,7 @@ export const HeaderText = (props: {children?: string, color?: string, style?: Te
             fontWeight: '700',
           },
         }),
+        ...props.style,
       }}>
       {props.children ?? ''}
     </Text>
