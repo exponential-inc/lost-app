@@ -1,5 +1,5 @@
 import React, {ReactNode} from 'react';
-import {Text, View, ScrollView} from 'react-native';
+import {Text, View, ScrollView, Image} from 'react-native';
 import {Layout, List, ListItem} from '@ui-kitten/components';
 import {connect} from 'react-redux';
 import Modal, {
@@ -7,6 +7,7 @@ import Modal, {
   ModalTitle,
   SlideAnimation,
 } from 'react-native-modals';
+import {iOSUIKit} from 'react-native-typography';
 
 import {K} from '../../store/constants';
 import {PageHeader} from '../../components/Page/PageHeader';
@@ -17,15 +18,15 @@ const SettingsPageC = (props: any) => {
 
   const list1 = [
     {
-      title: 'Toggle theme',
+      title: 'Change Theme',
       onPress: () => {
-        props.toggleTheme();
+        props.navigation.navigate('Theme');
       },
     },
     {
       title: 'Privacy',
       onPress: () => {
-        props.toggleSettingsModal(true, ['Privacy', <Text>Hi</Text>]);
+        props.toggleSettingsModal(true, ['Privacy Notice', <Text style={{color: themeColor.primaryText}}>Privacy</Text>]);
       },
     },
   ];
@@ -36,11 +37,64 @@ const SettingsPageC = (props: any) => {
       onPress: () => {
         props.toggleSettingsModal(true, [
           'About',
-          <View>
-            <Text style={{color: themeColor.primaryText}}>
-              We are a team of developers based in Singapore aiming to help the
-              community through what we do best.
-            </Text>
+          <View style={{height: '100%', justifyContent: 'space-between'}}>
+            <View>
+              <Text
+                style={{
+                  ...iOSUIKit.subheadEmphasizedObject,
+                  color: themeColor.secondaryText,
+                  letterSpacing: 2,
+                  marginTop: 10,
+                  marginBottom: 5,
+                }}>
+                US
+              </Text>
+              <Text style={{color: themeColor.primaryText}}>
+                We are a team of developers based in Singapore, aiming to help
+                the community through what we do best, and Elliot.
+              </Text>
+              <Text
+                style={{
+                  ...iOSUIKit.subheadEmphasizedObject,
+                  color: themeColor.secondaryText,
+                  letterSpacing: 2,
+                  marginTop: 15,
+                  marginBottom: 5,
+                }}>
+                APP
+              </Text>
+              <Text style={{color: themeColor.primaryText}}>
+                This application was made for our school project, Project SF,
+                for people who have dementia.
+              </Text>
+            </View>
+            <View style={{marginBottom: 50}}>
+              <Text
+                style={{
+                  ...iOSUIKit.subheadObject,
+                  color: themeColor.primaryText,
+                  marginBottom: -5,
+                  marginTop: 20,
+                  textAlign: 'center',
+                  width: '100%',
+                }}>
+                Made with ♡, {`\n`}
+                Exponential Inc.
+              </Text>
+              <Image
+                style={{
+                  width: 40,
+                  height: 40,
+                  marginVertical: 20,
+                  alignSelf: 'center',
+                }}
+                source={
+                  props.theme === 'dark'
+                    ? require('../../../assets/images/company-icon-dark.png')
+                    : require('../../../assets/images/company-icon-light.png')
+                }
+              />
+            </View>
           </View>,
         ]);
       },
@@ -48,13 +102,13 @@ const SettingsPageC = (props: any) => {
     {
       title: 'Tell A Friend',
       onPress: () => {
-        props.toggleSettingsModal(true, ['Share', <Text>Hi</Text>]);
+        props.toggleSettingsModal(true, ['Share', <Text style={{color: themeColor.primaryText}}>Share</Text>]);
       },
     },
     {
       title: 'Report A Bug',
       onPress: () => {
-        props.toggleSettingsModal(true, ['Bug Report', <Text>Hi</Text>]);
+        props.toggleSettingsModal(true, ['Bug Report', <Text style={{color: themeColor.primaryText}}>Report</Text>]);
       },
     },
   ];
@@ -72,7 +126,12 @@ const SettingsPageC = (props: any) => {
   return (
     <Layout style={{height: '100%', flex: 1}}>
       <ScrollView>
-        <PageHeader title="Settings" theme={props.theme} />
+        <PageHeader
+          title="Settings"
+          theme={props.theme}
+          type="large"
+          navigation={props.navigation}
+        />
         <Layout style={{marginHorizontal: 20}}>
           <ViewShadow theme={props.theme} style={{height: 100, marginTop: -20}}>
             <List
@@ -103,8 +162,11 @@ const SettingsPageC = (props: any) => {
         }
         modalTitle={
           <ModalTitle
-            title={props.settingsModalContent?.[0] ?? 'Blank'}
-            style={{backgroundColor: themeColor.secondaryBG, borderBottomColor: themeColor.primaryBG}}
+            title={props.settingsModalContent?.[0] ?? ''}
+            style={{
+              backgroundColor: themeColor.secondaryBG,
+              borderBottomColor: themeColor.primaryBG,
+            }}
             textStyle={{color: themeColor.primaryText}}
           />
         }
@@ -123,13 +185,14 @@ const SettingsPageC = (props: any) => {
           props.toggleSettingsModal(false);
         }}>
         <ModalContent style={{paddingHorizontal: 0}}>
-          <View style={{height: '100%', backgroundColor: themeColor.primaryBG, paddingHorizontal: 20, paddingTop: 15}}>
-            {props.settingsModalContent?.[1] ?? (
-              <Text style={{color: themeColor.primaryText}}>
-                If you expected content here, an error might have occured.
-                Please submit a bug report. Thanks!
-              </Text>
-            )}
+          <View
+            style={{
+              height: '100%',
+              backgroundColor: themeColor.primaryBG,
+              paddingHorizontal: 20,
+              paddingTop: 15,
+            }}>
+            {props.settingsModalContent?.[1] ?? null}
           </View>
         </ModalContent>
       </Modal>
