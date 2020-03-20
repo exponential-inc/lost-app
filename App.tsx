@@ -19,6 +19,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {ApplicationProvider, Layout, Text} from '@ui-kitten/components';
 import {mapping, light as lightTheme, dark as darkTheme} from '@eva-design/eva';
 import {SafeAreaView} from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 
 import {K} from './src/store/constants';
 
@@ -40,12 +41,27 @@ const SettingsPageNest = () => {
   );
 };
 
-Appearance.addChangeListener(({ colorScheme }) => {
-  store.dispatch({type: 'SET_THEME_NATIVE', theme: colorScheme})
+Appearance.addChangeListener(({colorScheme}) => {
+  store.dispatch({type: 'SET_THEME_NATIVE', theme: colorScheme});
 });
 
 const App = (props: any) => {
+  // const getSaved = async () => {
+  //   let raw;
+  //   try {
+  //     raw = await AsyncStorage.multiGet(['themeMode']); //add on to the array for more
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
 
+  //   let retrivedObject = {};
+  //   raw.map(value => {
+  //     retrivedObject[value[0]] = value[1];
+  //   });
+  //   console.log(retrivedObject);
+  //   return retrivedObject;
+  // };
+  // console.log(getSaved().retrivedObject);
   const themeColor = props.theme === 'dark' ? K.color.dark : K.color.light;
   return (
     <AppearanceProvider>
@@ -121,7 +137,8 @@ const mapStateToProps = (state: any) => {
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
-    setThemeNative: (theme: string) => dispatch({type: 'SET_THEME_NATIVE', theme: theme}),
+    setThemeNative: (theme: string) =>
+      dispatch({type: 'SET_THEME_NATIVE', theme: theme}),
   };
 };
 

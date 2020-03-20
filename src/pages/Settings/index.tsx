@@ -26,7 +26,7 @@ const SettingsPageC = (props: any) => {
     {
       title: 'Privacy',
       onPress: () => {
-        props.toggleSettingsModal(true, ['Privacy', <Text>Hi</Text>]);
+        props.toggleSettingsModal(true, ['Privacy Notice', <Text style={{color: themeColor.primaryText}}>Privacy</Text>]);
       },
     },
   ];
@@ -102,13 +102,13 @@ const SettingsPageC = (props: any) => {
     {
       title: 'Tell A Friend',
       onPress: () => {
-        props.toggleSettingsModal(true, ['Share', <Text>Hi</Text>]);
+        props.toggleSettingsModal(true, ['Share', <Text style={{color: themeColor.primaryText}}>Share</Text>]);
       },
     },
     {
       title: 'Report A Bug',
       onPress: () => {
-        props.toggleSettingsModal(true, ['Bug Report', <Text>Hi</Text>]);
+        props.toggleSettingsModal(true, ['Bug Report', <Text style={{color: themeColor.primaryText}}>Report</Text>]);
       },
     },
   ];
@@ -162,7 +162,7 @@ const SettingsPageC = (props: any) => {
         }
         modalTitle={
           <ModalTitle
-            title={props.settingsModalContent?.[0] ?? 'Blank'}
+            title={props.settingsModalContent?.[0] ?? ''}
             style={{
               backgroundColor: themeColor.secondaryBG,
               borderBottomColor: themeColor.primaryBG,
