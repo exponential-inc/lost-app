@@ -1,4 +1,5 @@
 import React from 'react';
+import {View, Platform} from 'react-native';
 import {Layout, List, ListItem, Text} from '@ui-kitten/components';
 import {connect} from 'react-redux';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -6,10 +7,11 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {K} from '../../store/constants';
 import {PageHeader} from '../../components/Page/PageHeader';
 import {ViewShadow} from '../../components/Shadow/View';
-import {View} from 'react-native';
+import {ListCard} from '../../components/Card/List';
 
-const SettingsToggleThemePageC = (props: any) => {
+const SettingsThemePageC = (props: any) => {
   const themeColor = props.theme === 'dark' ? K.colors.dark : K.colors.light;
+  const themeFont = Platform.OS === 'ios' ? K.fonts.ios : K.fonts.android;
 
   const list = [
     {
@@ -45,6 +47,7 @@ const SettingsToggleThemePageC = (props: any) => {
         title={`${item.title}`}
         onPress={item.onPress}
         style={{height: 50, ...selectedStyle}}
+        titleStyle={{...themeFont.subhead, color: themeColor.primaryText, marginLeft: 10}}
         icon={() =>
           item.selected ? (
             <Icon
@@ -74,14 +77,7 @@ const SettingsToggleThemePageC = (props: any) => {
         onLeadingButtonPress={() => props.navigation.navigate('Settings')}
       />
       <Layout style={{marginHorizontal: 20}}>
-        <ViewShadow theme={props.theme} style={{height: 150, marginTop: -20}}>
-          <List
-            data={list}
-            renderItem={renderItem}
-            scrollEnabled={false}
-            style={{borderRadius: 20, overflow: 'hidden'}}
-          />
-        </ViewShadow>
+        <ListCard theme={props.theme} data={list} firstInPage renderItem={renderItem} />
       </Layout>
     </Layout>
   );
@@ -102,7 +98,7 @@ const mapDispatchToProps = (dispatch: any) => {
   };
 };
 
-export const SettingsToggleThemePage = connect(
+export const SettingsThemePage = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(SettingsToggleThemePageC);
+)(SettingsThemePageC);

@@ -9,7 +9,7 @@ import {ViewShadow} from '../../components/Shadow/View';
 import {TextButton} from '../../components/Button/Text';
 
 const HomePageC = (props: any) => {
-  console.log(props.theme)
+  console.log(props.theme);
   const themeColor = props.theme === 'dark' ? K.colors.dark : K.colors.light;
   const themeFont = Platform.OS === 'ios' ? K.fonts.ios : K.fonts.android;
 
@@ -23,11 +23,14 @@ const HomePageC = (props: any) => {
           navigation={props.navigation}
         />
         <Layout style={{marginHorizontal: 20}}>
-          <ViewShadow theme={props.theme} style={{marginTop: -20}}>
+          <ViewShadow
+            theme={props.theme}
+            style={{marginTop: -20, borderRadius: 20, overflow: 'hidden'}}>
+              {/* //FIXME: SHADOW NOT SHOWING */}
             <Layout
               style={{
-                overflow: 'hidden',
                 borderRadius: 20,
+                overflow: 'hidden',
                 padding: 20,
                 backgroundColor: '#E41C1C',
               }}>

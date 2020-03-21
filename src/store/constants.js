@@ -1,4 +1,4 @@
-import {iOSUIKit, human} from 'react-native-typography';
+import {iOSUIKit, human, robotoWeights} from 'react-native-typography';
 
 export const K = {
   colors: {
@@ -40,16 +40,16 @@ export const K = {
       body: iOSUIKit.bodyObject,
     },
     android: {
-      largeTitleE: human.largeTitleObject,
+      largeTitleE: {...human.largeTitleObject, ...robotoWeights.medium},
       largeTitle: human.largeTitleObject,
 
-      smallTitleE: human.title3Object,
+      smallTitleE: {...human.title3Object, ...robotoWeights.medium},
       smallTitle: human.title3Object,
 
-      subheadE: human.subheadObject,
+      subheadE: {...human.subheadObject, ...robotoWeights.medium},
       subhead: human.subheadObject,
 
-      bodyE: human.bodyObject,
+      bodyE: {...human.bodyObject, ...robotoWeights.medium},
       body: human.bodyObject,
     }
   }

@@ -11,6 +11,7 @@ export const ListCard = (props: {
   data: ReadonlyArray<any> | null | undefined;
   style?: ViewStyle;
   firstInPage?: boolean;
+  renderItem?({ item, index }): JSX.Element;
 }) => {
   const themeFont = Platform.OS === 'ios' ? K.fonts.ios : K.fonts.android;
   const themeColor = props.theme === 'dark' ? K.colors.dark : K.colors.light;
@@ -21,7 +22,7 @@ export const ListCard = (props: {
         title={`${item.title}`}
         onPress={item.onPress}
         style={{height: 50}}
-        titleStyle={{...themeFont.subhead, color: themeColor.primaryText}}
+        titleStyle={{...themeFont.subhead, color: themeColor.primaryText, marginLeft: 10}}
       />
     );
   };
@@ -35,9 +36,7 @@ export const ListCard = (props: {
         marginBottom: 20,
         borderRadius: 20,
         ...Platform.select({
-          ios: {
-
-          },
+          ios: {},
           android: {
             overflow: 'hidden',
           }
@@ -45,7 +44,7 @@ export const ListCard = (props: {
       }}>
       <List
         data={props.data}
-        renderItem={renderItem}
+        renderItem={props.renderItem ?? renderItem}
         scrollEnabled={false}
         style={{overflow: 'hidden', borderRadius: 20}}
       />
