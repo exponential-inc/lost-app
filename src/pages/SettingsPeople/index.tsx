@@ -1,4 +1,5 @@
 import React from 'react';
+import {View} from 'react-native';
 import {Layout, List, ListItem, Text} from '@ui-kitten/components';
 import {connect} from 'react-redux';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -6,7 +7,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {K} from '../../store/constants';
 import {PageHeader} from '../../components/Page/PageHeader';
 import {ViewShadow} from '../../components/Shadow/View';
-import {View} from 'react-native';
+import {ListCard} from '../../components/Card/List';
 
 const SettingsPeoplePageC = (props: any) => {
   const themeColor = props.theme === 'dark' ? K.colors.dark : K.colors.light;
@@ -60,14 +61,7 @@ const SettingsPeoplePageC = (props: any) => {
       />
       {/* //TODO: ACTION BUTTON PRESS^^ */}
       <Layout style={{marginHorizontal: 20}}>
-        <ViewShadow theme={props.theme} style={{height: 150, marginTop: -20}}>
-          <List
-            data={list}
-            renderItem={renderItem}
-            scrollEnabled={false}
-            style={{borderRadius: 20, overflow: 'hidden'}}
-          />
-        </ViewShadow>
+        <ListCard theme={props.theme} data={list} firstInPage />
       </Layout>
     </Layout>
   );

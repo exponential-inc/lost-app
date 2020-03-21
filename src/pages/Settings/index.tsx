@@ -11,6 +11,7 @@ import Modal, {
 import {K} from '../../store/constants';
 import {PageHeader} from '../../components/Page/PageHeader';
 import {ViewShadow} from '../../components/Shadow/View';
+import {ListCard} from '../../components/Card/List';
 
 const SettingsPageC = (props: any) => {
   const themeColor = props.theme === 'dark' ? K.colors.dark : K.colors.light;
@@ -41,7 +42,7 @@ const SettingsPageC = (props: any) => {
               collecting data about you if you have location sharing turned on.
             </Text>
             <Text
-            style={{color: themeColor.secondaryText}}
+              style={{color: themeColor.secondaryText}}
               onPress={() => {
                 Linking.openURL(
                   'https://firebase.google.com/terms/data-processing-terms',
@@ -149,17 +150,6 @@ const SettingsPageC = (props: any) => {
     },
   ];
 
-  const renderItem = ({item, index}) => {
-    return (
-      <ListItem
-        title={`${item.title}`}
-        onPress={item.onPress}
-        style={{height: 50}}
-        titleStyle={{...themeFont.subhead, color: themeColor.primaryText}}
-      />
-    );
-  };
-
   return (
     <Layout style={{height: '100%', flex: 1}}>
       <ScrollView>
@@ -170,24 +160,8 @@ const SettingsPageC = (props: any) => {
           navigation={props.navigation}
         />
         <Layout style={{marginHorizontal: 20}}>
-          <ViewShadow theme={props.theme} style={{height: (50*3), marginTop: -20}}>
-            <List
-              data={list1}
-              renderItem={renderItem}
-              scrollEnabled={false}
-              style={{borderRadius: 20, overflow: 'hidden'}}
-            />
-          </ViewShadow>
-          <ViewShadow
-            theme={props.theme}
-            style={{height: (50*4), marginTop: 20, marginBottom: 20}}>
-            <List
-              data={list2}
-              renderItem={renderItem}
-              scrollEnabled={false}
-              style={{overflow: 'hidden', borderRadius: 20}}
-            />
-          </ViewShadow>
+          <ListCard theme={props.theme} data={list1} firstInPage/>
+          <ListCard theme={props.theme} data={list2} />
         </Layout>
       </ScrollView>
 
