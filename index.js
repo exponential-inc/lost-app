@@ -12,7 +12,7 @@ import { createStore } from 'redux';
 import { reducer } from './src/store/reducer';
 
 export const store = createStore(reducer);
-
+console.disableYellowBox = true; //to remove annoying warning popups.
 const RenderApp = () => {
   return (
     <Provider store={store}>

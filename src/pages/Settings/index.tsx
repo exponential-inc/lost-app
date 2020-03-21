@@ -1,5 +1,5 @@
-import React, {ReactNode} from 'react';
-import {Text, View, ScrollView, Image} from 'react-native';
+import React from 'react';
+import {Text, View, ScrollView, Image, Linking, Platform} from 'react-native';
 import {Layout, List, ListItem} from '@ui-kitten/components';
 import {connect} from 'react-redux';
 import Modal, {
@@ -7,18 +7,25 @@ import Modal, {
   ModalTitle,
   SlideAnimation,
 } from 'react-native-modals';
-import {iOSUIKit} from 'react-native-typography';
 
 import {K} from '../../store/constants';
 import {PageHeader} from '../../components/Page/PageHeader';
 import {ViewShadow} from '../../components/Shadow/View';
+import {ListCard} from '../../components/Card/List';
 
 const SettingsPageC = (props: any) => {
-  const themeColor = props.theme === 'dark' ? K.color.dark : K.color.light;
+  const themeColor = props.theme === 'dark' ? K.colors.dark : K.colors.light;
+  const themeFont = Platform.OS === 'ios' ? K.fonts.ios : K.fonts.android;
 
   const list1 = [
     {
-      title: 'Change Theme',
+      title: 'People',
+      onPress: () => {
+        props.navigation.navigate('People');
+      },
+    },
+    {
+      title: 'Theme',
       onPress: () => {
         props.navigation.navigate('Theme');
       },
@@ -26,11 +33,28 @@ const SettingsPageC = (props: any) => {
     {
       title: 'Privacy',
       onPress: () => {
-        props.toggleSettingsModal(true, ['Privacy Notice', <Text style={{color: themeColor.primaryText}}>Privacy</Text>]);
+        props.toggleSettingsModal(true, [
+          'Privacy Notice',
+          <View>
+            <Text style={{color: themeColor.primaryText, marginBottom: 20}}>
+              We do not keep any information about you or your location.
+              However, as we are using a free service by Google, it may be
+              collecting data about you if you have location sharing turned on.
+            </Text>
+            <Text
+              style={{color: themeColor.secondaryText}}
+              onPress={() => {
+                Linking.openURL(
+                  'https://firebase.google.com/terms/data-processing-terms',
+                );
+              }}>
+              Learn More
+            </Text>
+          </View>,
+        ]);
       },
     },
   ];
-
   const list2 = [
     {
       title: 'About',
@@ -41,7 +65,7 @@ const SettingsPageC = (props: any) => {
             <View>
               <Text
                 style={{
-                  ...iOSUIKit.subheadEmphasizedObject,
+                  ...themeFont.subheadE,
                   color: themeColor.secondaryText,
                   letterSpacing: 2,
                   marginTop: 10,
@@ -55,7 +79,7 @@ const SettingsPageC = (props: any) => {
               </Text>
               <Text
                 style={{
-                  ...iOSUIKit.subheadEmphasizedObject,
+                  ...themeFont.subheadE,
                   color: themeColor.secondaryText,
                   letterSpacing: 2,
                   marginTop: 15,
@@ -71,7 +95,7 @@ const SettingsPageC = (props: any) => {
             <View style={{marginBottom: 50}}>
               <Text
                 style={{
-                  ...iOSUIKit.subheadObject,
+                  ...themeFont.subhead,
                   color: themeColor.primaryText,
                   marginBottom: -5,
                   marginTop: 20,
@@ -81,19 +105,22 @@ const SettingsPageC = (props: any) => {
                 Made with ♡, {`\n`}
                 Exponential Inc.
               </Text>
-              <Image
-                style={{
-                  width: 40,
-                  height: 40,
-                  marginVertical: 20,
-                  alignSelf: 'center',
-                }}
-                source={
-                  props.theme === 'dark'
-                    ? require('../../../assets/images/company-icon-dark.png')
-                    : require('../../../assets/images/company-icon-light.png')
-                }
-              />
+              <View
+                onTouchStart={() => Linking.openURL('https://www.ryanthe.com')}>
+                <Image
+                  style={{
+                    width: 40,
+                    height: 40,
+                    marginVertical: 20,
+                    alignSelf: 'center',
+                  }}
+                  source={
+                    props.theme === 'dark'
+                      ? require('../../../assets/images/company-icon-dark.png')
+                      : require('../../../assets/images/company-icon-light.png')
+                  }
+                />
+              </View>
             </View>
           </View>,
         ]);
@@ -102,30 +129,26 @@ const SettingsPageC = (props: any) => {
     {
       title: 'Tell A Friend',
       onPress: () => {
-        props.toggleSettingsModal(true, ['Share', <Text style={{color: themeColor.primaryText}}>Share</Text>]);
+        props.toggleSettingsModal(true, [
+          'Share',
+          <Text style={{color: themeColor.primaryText}}>Share</Text>,
+        ]);
       },
     },
     {
       title: 'Report A Bug',
       onPress: () => {
-        props.toggleSettingsModal(true, ['Bug Report', <Text style={{color: themeColor.primaryText}}>Report</Text>]);
+        props.toggleSettingsModal(true, [
+          'Bug Report',
+          <Text style={{color: themeColor.primaryText}}>Report</Text>,
+        ]);
       },
     },
     {
-      title: 'Leave a review',
-      onPress: () => {},
+      title: 'Leave A Review',
+      onPress: () => Linking.openURL('https://www.ryanthe.com'),
     },
   ];
-
-  const renderItem = ({item, index}) => {
-    return (
-      <ListItem
-        title={`${item.title}`}
-        onPress={item.onPress}
-        style={{height: 50}}
-      />
-    );
-  };
 
   return (
     <Layout style={{height: '100%', flex: 1}}>
@@ -137,24 +160,8 @@ const SettingsPageC = (props: any) => {
           navigation={props.navigation}
         />
         <Layout style={{marginHorizontal: 20}}>
-          <ViewShadow theme={props.theme} style={{height: 100, marginTop: -20}}>
-            <List
-              data={list1}
-              renderItem={renderItem}
-              scrollEnabled={false}
-              style={{borderRadius: 20, overflow: 'hidden'}}
-            />
-          </ViewShadow>
-          <ViewShadow
-            theme={props.theme}
-            style={{height: 150, marginTop: 20, marginBottom: 20}}>
-            <List
-              data={list2}
-              renderItem={renderItem}
-              scrollEnabled={false}
-              style={{overflow: 'hidden', borderRadius: 20}}
-            />
-          </ViewShadow>
+          <ListCard theme={props.theme} data={list1} firstInPage/>
+          <ListCard theme={props.theme} data={list2} />
         </Layout>
       </ScrollView>
 
