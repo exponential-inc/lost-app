@@ -8,30 +8,13 @@ import {PageHeader} from '../../components/Page/PageHeader';
 import {ViewShadow} from '../../components/Shadow/View';
 import {View} from 'react-native';
 
-const SettingsToggleThemePageC = (props: any) => {
+const SettingsPeoplePageC = (props: any) => {
   const themeColor = props.theme === 'dark' ? K.color.dark : K.color.light;
 
   const list = [
     {
-      title: 'Automatic',
-      onPress: () => {
-        props.setThemeMode('auto');
-      },
-      selected: props.themeMode === 'auto',
-    },
-    {
-      title: 'Dark',
-      onPress: () => {
-        props.setThemeMode('dark');
-      },
-      selected: props.themeMode === 'dark',
-    },
-    {
-      title: 'Light',
-      onPress: () => {
-        props.setThemeMode('light');
-      },
-      selected: props.themeMode === 'light',
+      title: 'No People :(',
+      onPress: () => {},
     },
   ];
 
@@ -66,13 +49,16 @@ const SettingsToggleThemePageC = (props: any) => {
   return (
     <Layout style={{height: '100%', flex: 1}}>
       <PageHeader
-        title="Theme"
+        title="People"
         theme={props.theme}
         type="small"
         navigation={props.navigation}
         leadingButton="arrow-left"
         onLeadingButtonPress={() => props.navigation.navigate('Settings')}
+        actionButton="plus"
+        onActionButtonPress={null}
       />
+      {/* //TODO: ACTION BUTTON PRESS^^ */}
       <Layout style={{marginHorizontal: 20}}>
         <ViewShadow theme={props.theme} style={{height: 150, marginTop: -20}}>
           <List
@@ -90,8 +76,6 @@ const SettingsToggleThemePageC = (props: any) => {
 const mapStateToProps = (state: any) => {
   return {
     theme: state.theme,
-    themeMode: state.themeMode,
-    themeNative: state.themeNative,
   };
 };
 
@@ -102,7 +86,7 @@ const mapDispatchToProps = (dispatch: any) => {
   };
 };
 
-export const SettingsToggleThemePage = connect(
+export const SettingsPeoplePage = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(SettingsToggleThemePageC);
+)(SettingsPeoplePageC);

@@ -27,6 +27,8 @@ import {HomePage} from './src/pages/Home';
 import {SettingsPage} from './src/pages/Settings';
 import {SettingsToggleThemePage} from './src/pages/SettingsToggleTheme';
 import {FindPage} from './src/pages/Find';
+import {SettingsPeoplePage} from './src/pages/SettingsPeople';
+
 import {store} from './index.js';
 
 const Tab = createBottomTabNavigator();
@@ -37,6 +39,7 @@ const SettingsPageNest = () => {
     <Stack.Navigator initialRouteName="Settings" headerMode="none">
       <Stack.Screen name="Settings" component={SettingsPage} />
       <Stack.Screen name="Theme" component={SettingsToggleThemePage} />
+      <Stack.Screen name="People" component={SettingsPeoplePage} />
     </Stack.Navigator>
   );
 };

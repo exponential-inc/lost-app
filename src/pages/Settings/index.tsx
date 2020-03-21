@@ -1,4 +1,4 @@
-import React, {ReactNode} from 'react';
+import React from 'react';
 import {Text, View, ScrollView, Image, Linking} from 'react-native';
 import {Layout, List, ListItem} from '@ui-kitten/components';
 import {connect} from 'react-redux';
@@ -12,13 +12,20 @@ import {iOSUIKit} from 'react-native-typography';
 import {K} from '../../store/constants';
 import {PageHeader} from '../../components/Page/PageHeader';
 import {ViewShadow} from '../../components/Shadow/View';
+import {TextButton} from '../../components/Button/Text';
 
 const SettingsPageC = (props: any) => {
   const themeColor = props.theme === 'dark' ? K.color.dark : K.color.light;
 
   const list1 = [
     {
-      title: 'Change Theme',
+      title: 'People',
+      onPress: () => {
+        props.navigation.navigate('People');
+      },
+    },
+    {
+      title: 'Theme',
       onPress: () => {
         props.navigation.navigate('Theme');
       },
@@ -28,12 +35,26 @@ const SettingsPageC = (props: any) => {
       onPress: () => {
         props.toggleSettingsModal(true, [
           'Privacy Notice',
-          <Text style={{color: themeColor.primaryText}}>Privacy</Text>,
+          <View>
+            <Text style={{color: themeColor.primaryText, marginBottom: 20}}>
+              We do not keep any information about you or your location.
+              However, as we are using a free service by Google, it may be
+              collecting data about you if you have location sharing turned on.
+            </Text>
+            <Text
+            style={{color: themeColor.secondaryText}}
+              onPress={() => {
+                Linking.openURL(
+                  'https://firebase.google.com/terms/data-processing-terms',
+                );
+              }}>
+              Learn More
+            </Text>
+          </View>,
         ]);
       },
     },
   ];
-
   const list2 = [
     {
       title: 'About',
@@ -85,17 +106,7 @@ const SettingsPageC = (props: any) => {
                 Exponential Inc.
               </Text>
               <View
-              onTouchStart={() => {
-                  Linking.canOpenURL('https://www.ryanthe.com').then(
-                    supported => {
-                      if (supported) {
-                        Linking.openURL('https://www.ryanthe.com');
-                      } else {
-                        console.log("Error: Can't open URL");
-                      }
-                    },
-                  );
-                }}>
+                onTouchStart={() => Linking.openURL('https://www.ryanthe.com')}>
                 <Image
                   style={{
                     width: 40,
@@ -135,15 +146,7 @@ const SettingsPageC = (props: any) => {
     },
     {
       title: 'Leave A Review',
-      onPress: () => {
-        Linking.canOpenURL('https://www.ryanthe.com').then(supported => {
-          if (supported) {
-            Linking.openURL('https://www.ryanthe.com');
-          } else {
-            console.log("Error: Can't open URL");
-          }
-        });
-      },
+      onPress: () => Linking.openURL('https://www.ryanthe.com'),
     },
   ];
 
@@ -167,7 +170,7 @@ const SettingsPageC = (props: any) => {
           navigation={props.navigation}
         />
         <Layout style={{marginHorizontal: 20}}>
-          <ViewShadow theme={props.theme} style={{height: 100, marginTop: -20}}>
+          <ViewShadow theme={props.theme} style={{height: 150, marginTop: -20}}>
             <List
               data={list1}
               renderItem={renderItem}

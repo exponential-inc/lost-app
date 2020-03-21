@@ -4,15 +4,16 @@ import {Text, Layout} from '@ui-kitten/components';
 import {iOSUIKit} from 'react-native-typography';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import {HeaderText} from '../../Text/Header';
 import {K} from '../../../store/constants';
 export const PageHeader = (props: {
-  theme: any;
+  theme: string;
   title: string;
   type: string;
   bottomBar?: boolean;
   leadingButton?: string;
+  onLeadingButtonPress?(): void;
   actionButton?: string;
+  onActionButtonPress?(): void;
   navigation: any;
 }) => {
   const themeColor = props.theme === 'dark' ? K.color.dark : K.color.light;
@@ -58,7 +59,7 @@ export const PageHeader = (props: {
                 name={props.leadingButton}
                 size={30}
                 color={themeColor.lightText}
-                onPress={props.navigation.goBack}
+                onPress={props.onLeadingButtonPress}
                 style={{marginHorizontal: 20}}
               />
             ) : null}
@@ -78,7 +79,7 @@ export const PageHeader = (props: {
                 name={props.actionButton}
                 size={30}
                 color={themeColor.lightText}
-                onPress={props.navigation.goBack}
+                onPress={props.onActionButtonPress}
                 style={{marginHorizontal: 20}}
               />
             ) : null}
