@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, View, ScrollView, Image, Linking} from 'react-native';
+import {Text, View, ScrollView, Image, Linking, Platform} from 'react-native';
 import {Layout, List, ListItem} from '@ui-kitten/components';
 import {connect} from 'react-redux';
 import Modal, {
@@ -7,15 +7,14 @@ import Modal, {
   ModalTitle,
   SlideAnimation,
 } from 'react-native-modals';
-import {iOSUIKit} from 'react-native-typography';
 
 import {K} from '../../store/constants';
 import {PageHeader} from '../../components/Page/PageHeader';
 import {ViewShadow} from '../../components/Shadow/View';
-import {TextButton} from '../../components/Button/Text';
 
 const SettingsPageC = (props: any) => {
-  const themeColor = props.theme === 'dark' ? K.color.dark : K.color.light;
+  const themeColor = props.theme === 'dark' ? K.colors.dark : K.colors.light;
+  const themeFont = Platform.OS === 'ios' ? K.fonts.ios : K.fonts.android;
 
   const list1 = [
     {
@@ -65,7 +64,7 @@ const SettingsPageC = (props: any) => {
             <View>
               <Text
                 style={{
-                  ...iOSUIKit.subheadEmphasizedObject,
+                  ...themeFont.subheadE,
                   color: themeColor.secondaryText,
                   letterSpacing: 2,
                   marginTop: 10,
@@ -79,7 +78,7 @@ const SettingsPageC = (props: any) => {
               </Text>
               <Text
                 style={{
-                  ...iOSUIKit.subheadEmphasizedObject,
+                  ...themeFont.subheadE,
                   color: themeColor.secondaryText,
                   letterSpacing: 2,
                   marginTop: 15,
@@ -95,7 +94,7 @@ const SettingsPageC = (props: any) => {
             <View style={{marginBottom: 50}}>
               <Text
                 style={{
-                  ...iOSUIKit.subheadObject,
+                  ...themeFont.subhead,
                   color: themeColor.primaryText,
                   marginBottom: -5,
                   marginTop: 20,
@@ -156,6 +155,7 @@ const SettingsPageC = (props: any) => {
         title={`${item.title}`}
         onPress={item.onPress}
         style={{height: 50}}
+        titleStyle={{...themeFont.subhead, color: themeColor.primaryText}}
       />
     );
   };
@@ -170,7 +170,7 @@ const SettingsPageC = (props: any) => {
           navigation={props.navigation}
         />
         <Layout style={{marginHorizontal: 20}}>
-          <ViewShadow theme={props.theme} style={{height: 150, marginTop: -20}}>
+          <ViewShadow theme={props.theme} style={{height: (50*3), marginTop: -20}}>
             <List
               data={list1}
               renderItem={renderItem}
@@ -180,7 +180,7 @@ const SettingsPageC = (props: any) => {
           </ViewShadow>
           <ViewShadow
             theme={props.theme}
-            style={{height: 200, marginTop: 20, marginBottom: 20}}>
+            style={{height: (50*4), marginTop: 20, marginBottom: 20}}>
             <List
               data={list2}
               renderItem={renderItem}

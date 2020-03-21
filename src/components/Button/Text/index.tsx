@@ -1,9 +1,10 @@
 import React from 'react';
-import {ViewStyle, View, Text} from 'react-native';
-import {iOSUIKit} from 'react-native-typography';
+import {ViewStyle, View, Text, Platform} from 'react-native';
 
 import {TouchableShadow} from '../../Shadow/Touchable';
+import {K} from '../../../store/constants';
 
+const themeFont = Platform.OS === 'ios' ? K.fonts.ios : K.fonts.android;
 export const TextButton = (props: {
   theme: string;
   children: string;
@@ -22,7 +23,7 @@ export const TextButton = (props: {
           paddingHorizontal: 25,
           borderRadius: 10000,
         }}>
-        <Text style={{...iOSUIKit.bodyObject}}>{props.children}</Text>
+        <Text style={{...themeFont.body}}>{props.children}</Text>
       </TouchableShadow>
     </View>
   );

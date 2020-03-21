@@ -1,7 +1,6 @@
 import React from 'react';
 import {Platform, StatusBar, View} from 'react-native';
 import {Text, Layout} from '@ui-kitten/components';
-import {iOSUIKit} from 'react-native-typography';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import {K} from '../../../store/constants';
@@ -16,7 +15,8 @@ export const PageHeader = (props: {
   onActionButtonPress?(): void;
   navigation: any;
 }) => {
-  const themeColor = props.theme === 'dark' ? K.color.dark : K.color.light;
+  const themeColor = props.theme === 'dark' ? K.colors.dark : K.colors.light;
+  const themeFont = Platform.OS === 'ios' ? K.fonts.ios : K.fonts.android;
   return (
     <Layout
       style={{
@@ -39,7 +39,7 @@ export const PageHeader = (props: {
           }}>
           <Text
             style={{
-              ...iOSUIKit.largeTitleEmphasizedObject,
+              ...themeFont.largeTitleE,
               color: themeColor.lightText,
             }}>
             {props.title}
@@ -66,7 +66,7 @@ export const PageHeader = (props: {
           </View>
           <Text
             style={{
-              ...iOSUIKit.bodyEmphasizedObject,
+              ...themeFont.bodyE,
               color: themeColor.lightText,
               textAlign: 'center',
               flex: 3,

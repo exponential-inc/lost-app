@@ -1,8 +1,7 @@
 import React from 'react';
-import {ScrollView, Text} from 'react-native';
+import {ScrollView, Text, Platform} from 'react-native';
 import {connect} from 'react-redux';
 import {Layout} from '@ui-kitten/components';
-import {iOSUIKit} from 'react-native-typography';
 
 import {K} from '../../store/constants';
 import {PageHeader} from '../../components/Page/PageHeader';
@@ -11,7 +10,9 @@ import {TextButton} from '../../components/Button/Text';
 
 const HomePageC = (props: any) => {
   console.log(props.theme)
-  const themeColor = props.theme === 'dark' ? K.color.dark : K.color.light;
+  const themeColor = props.theme === 'dark' ? K.colors.dark : K.colors.light;
+  const themeFont = Platform.OS === 'ios' ? K.fonts.ios : K.fonts.android;
+
   return (
     <Layout style={{height: '100%'}}>
       <ScrollView>
@@ -32,7 +33,7 @@ const HomePageC = (props: any) => {
               }}>
               <Text
                 style={{
-                  ...iOSUIKit.title3EmphasizedObject,
+                  ...themeFont.smallTitleE,
                   color: themeColor.lightText,
                   marginBottom: 10,
                 }}>
@@ -40,7 +41,7 @@ const HomePageC = (props: any) => {
               </Text>
               <Text
                 style={{
-                  ...iOSUIKit.bodyObject,
+                  ...themeFont.body,
                   color: themeColor.lightText,
                   width: 250,
                   marginBottom: 20,

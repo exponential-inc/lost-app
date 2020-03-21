@@ -9,7 +9,7 @@ import {ViewShadow} from '../../components/Shadow/View';
 import {View} from 'react-native';
 
 const SettingsToggleThemePageC = (props: any) => {
-  const themeColor = props.theme === 'dark' ? K.color.dark : K.color.light;
+  const themeColor = props.theme === 'dark' ? K.colors.dark : K.colors.light;
 
   const list = [
     {
