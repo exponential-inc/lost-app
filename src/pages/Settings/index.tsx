@@ -115,6 +115,10 @@ const SettingsPageC = (props: any) => {
       title: 'Leave a review',
       onPress: () => {},
     },
+    {
+    title: 'Login',
+    onPress: () => {},
+    }
   ];
 
   const renderItem = ({item, index}) => {
@@ -147,7 +151,7 @@ const SettingsPageC = (props: any) => {
           </ViewShadow>
           <ViewShadow
             theme={props.theme}
-            style={{height: 150, marginTop: 20, marginBottom: 20}}>
+            style={{height: 200, marginTop: 20, marginBottom: 20}}>
             <List
               data={list2}
               renderItem={renderItem}
