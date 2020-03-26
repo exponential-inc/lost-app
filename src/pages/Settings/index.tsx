@@ -164,29 +164,8 @@ const SettingsPageC = (props: any) => {
           navigation={props.navigation}
         />
         <Layout style={{marginHorizontal: 20}}>
-<<<<<<< HEAD
-          <ViewShadow theme={props.theme} style={{height: 100, marginTop: -20}}>
-            <List
-              data={list1}
-              renderItem={renderItem}
-              scrollEnabled={false}
-              style={{borderRadius: 20, overflow: 'hidden'}}
-            />
-          </ViewShadow>
-          <ViewShadow
-            theme={props.theme}
-            style={{height: 200, marginTop: 20, marginBottom: 20}}>
-            <List
-              data={list2}
-              renderItem={renderItem}
-              scrollEnabled={false}
-              style={{overflow: 'hidden', borderRadius: 20}}
-            />
-          </ViewShadow>
-=======
           <ListCard theme={props.theme} data={list1} firstInPage/>
           <ListCard theme={props.theme} data={list2} />
->>>>>>> upstream/master
         </Layout>
       </ScrollView>
 

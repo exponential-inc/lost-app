@@ -11,7 +11,8 @@ export const K = {
       darkText: '#000F31',
       lightText: '#FFFFFF',
       greyText: '#E9E9E9',
-      contrast: '#000F31'
+      contrast: '#000F31',
+      black: '#000000'
     },
     dark: {
       primaryBG: '#232B43',
@@ -22,8 +23,9 @@ export const K = {
       darkText: '#000F31',
       lightText: '#FFFFFF',
       greyText: '#E9E9E9',
-      contrast: '#FFFFFF'
-    }
+      contrast: '#FFFFFF',
+      black: '#000000'
+    },
   },
   fonts: {
     ios: {
