@@ -1,5 +1,7 @@
+import {iOSUIKit, human, robotoWeights} from 'react-native-typography';
+
 export const K = {
-  color: {
+  colors: {
     light: {
       primaryBG: '#FFFFFF',
       secondaryBG: '#F8F8F8',
@@ -21,6 +23,34 @@ export const K = {
       lightText: '#FFFFFF',
       greyText: '#E9E9E9',
       contrast: '#FFFFFF'
+    }
+  },
+  fonts: {
+    ios: {
+      largeTitleE: iOSUIKit.largeTitleEmphasizedObject,
+      largeTitle: iOSUIKit.largeTitleObject,
+
+      smallTitleE: iOSUIKit.title3EmphasizedObject,
+      smallTitle: iOSUIKit.title3Object,
+
+      subheadE: iOSUIKit.subheadEmphasizedObject,
+      subhead: iOSUIKit.subheadObject,
+
+      bodyE: iOSUIKit.bodyEmphasizedObject,
+      body: iOSUIKit.bodyObject,
+    },
+    android: {
+      largeTitleE: {...human.largeTitleObject, ...robotoWeights.medium},
+      largeTitle: human.largeTitleObject,
+
+      smallTitleE: {...human.title3Object, ...robotoWeights.medium},
+      smallTitle: human.title3Object,
+
+      subheadE: {...human.subheadObject, ...robotoWeights.medium},
+      subhead: human.subheadObject,
+
+      bodyE: {...human.bodyObject, ...robotoWeights.medium},
+      body: human.bodyObject,
     }
   }
 }

@@ -16,17 +16,19 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {connect} from 'react-redux';
 import {AppearanceProvider, Appearance} from 'react-native-appearance';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {ApplicationProvider, Layout, Text} from '@ui-kitten/components';
+import {ApplicationProvider, Layout} from '@ui-kitten/components';
 import {mapping, light as lightTheme, dark as darkTheme} from '@eva-design/eva';
-import {SafeAreaView} from 'react-native';
-import AsyncStorage from '@react-native-community/async-storage';
+import {SafeAreaView, View} from 'react-native';
+// import AsyncStorage from '@react-native-community/async-storage';
 
 import {K} from './src/store/constants';
 
 import {HomePage} from './src/pages/Home';
 import {SettingsPage} from './src/pages/Settings';
-import {SettingsToggleThemePage} from './src/pages/SettingsToggleTheme';
+import {SettingsThemePage} from './src/pages/SettingsTheme';
 import {FindPage} from './src/pages/Find';
+import {SettingsPeoplePage} from './src/pages/SettingsPeople';
+
 import {store} from './index.js';
 
 const Tab = createBottomTabNavigator();
@@ -36,7 +38,8 @@ const SettingsPageNest = () => {
   return (
     <Stack.Navigator initialRouteName="Settings" headerMode="none">
       <Stack.Screen name="Settings" component={SettingsPage} />
-      <Stack.Screen name="Theme" component={SettingsToggleThemePage} />
+      <Stack.Screen name="Theme" component={SettingsThemePage} />
+      <Stack.Screen name="People" component={SettingsPeoplePage} />
     </Stack.Navigator>
   );
 };
@@ -62,7 +65,7 @@ const App = (props: any) => {
   //   return retrivedObject;
   // };
   // console.log(getSaved().retrivedObject);
-  const themeColor = props.theme === 'dark' ? K.color.dark : K.color.light;
+  const themeColor = props.theme === 'dark' ? K.colors.dark : K.colors.light;
   return (
     <AppearanceProvider>
       <Fragment>
