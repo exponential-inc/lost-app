@@ -36,7 +36,7 @@ export const LoginButton = (props: {
           margin: 5,
           ...props.style,
         }}>
-        <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'center'}}>
+        <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: 7}}>
           {props.icon !== undefined ? (
             <Icon
               name={props.icon}

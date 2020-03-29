@@ -18,7 +18,7 @@ import {AppearanceProvider, Appearance} from 'react-native-appearance';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {ApplicationProvider, Layout} from '@ui-kitten/components';
 import {mapping, light as lightTheme, dark as darkTheme} from '@eva-design/eva';
-import {SafeAreaView, View} from 'react-native';
+import {SafeAreaView, View, Dimensions} from 'react-native';
 // import AsyncStorage from '@react-native-community/async-storage';
 
 import {K} from './src/store/constants';
@@ -27,6 +27,7 @@ import {HomePage} from './src/pages/Home';
 import {SettingsPage} from './src/pages/Settings';
 import {SettingsThemePage} from './src/pages/SettingsTheme';
 import {FindPage} from './src/pages/Find';
+import {LandingPage} from './src/pages/Landing';
 import {SettingsPeoplePage} from './src/pages/SettingsPeople';
 
 import {store} from './index.js';
@@ -47,6 +48,8 @@ const SettingsPageNest = () => {
 Appearance.addChangeListener(({colorScheme}) => {
   store.dispatch({type: 'SET_THEME_NATIVE', theme: colorScheme});
 });
+
+Dimensions.addEventListener('change', () => store.dispatch({type: 'UPDATE_DEVICE_SIZE'}))
 
 const App = (props: any) => {
   // const getSaved = async () => {
@@ -120,7 +123,7 @@ const App = (props: any) => {
                   inactiveBackgroundColor: themeColor.secondaryBG,
                   style: {borderTopColor: themeColor.primaryBG},
                 }}>
-                <Tab.Screen name="Find" component={FindPage} />
+                <Tab.Screen name="Find" component={LandingPage} />
                 <Tab.Screen name="Home" component={HomePage} />
                 <Tab.Screen name="Settings" component={SettingsPageNest} />
               </Tab.Navigator>
