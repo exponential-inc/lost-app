@@ -23,7 +23,7 @@ const HomePageC = (props: any) => {
           navigation={props.navigation}
         />
         <Layout style={{marginHorizontal: 20}}>
-          <ContentCard theme={props.theme} data={['hello']} backgroundColor={themeColor.red} firstInPage/>
+          <ContentCard theme={props.theme} title='Finish Setup' body='Follow these steps to finish setup.' backgroundColor={themeColor.red} firstInPage/>
         </Layout>
       </ScrollView>
     </Layout>

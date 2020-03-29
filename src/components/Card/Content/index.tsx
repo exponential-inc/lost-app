@@ -8,7 +8,8 @@ import {List, ListItem, Layout} from '@ui-kitten/components';
 
 export const ContentCard = (props: {
   theme: string;
-  data: ReadonlyArray<any> | null | undefined;
+  title: string;
+  body: string;
   style?: ViewStyle;
   firstInPage?: boolean;
   renderItem?({item, index}): JSX.Element;
@@ -37,7 +38,6 @@ export const ContentCard = (props: {
     <ViewShadow
       theme={props.theme}
       style={{
-        height: props.data.length * 50,
         marginTop: props.firstInPage ? -20 : 0,
         marginBottom: 20,
         borderRadius: 20,
@@ -48,8 +48,16 @@ export const ContentCard = (props: {
           },
         }),
       }}>
-      <Layout style={{overflow: 'hidden', borderRadius: 20, height: 100, padding: 8, backgroundColor: props.backgroundColor}}>
-        <Text>{props.data}</Text>
+      <Layout
+        style={{
+          overflow: 'hidden',
+          borderRadius: 20,
+          height: 100,
+          padding: 15,
+          backgroundColor: props.backgroundColor,
+        }}>
+        <Text style={{...themeFont.smallTitleE, color: themeColor.lightText}}>{props.title}</Text>
+        <Text style={{...themeFont.body, color: themeColor.lightText}}>{props.body}</Text>
       </Layout>
     </ViewShadow>
   );

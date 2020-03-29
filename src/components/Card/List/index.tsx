@@ -81,6 +81,7 @@ export const ListCard = (props: {
               height: 0.5,
               borderBottomColor: 'transparent',
               backgroundColor: `${themeColor.contrast}33`,
+              marginTop: -0.5,
               marginLeft: 50,
             }}
           />
