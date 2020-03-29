@@ -116,7 +116,7 @@ const App = (props: any) => {
                 tabBarOptions={{
                   activeTintColor: themeColor.contrast,
                   activeBackgroundColor: themeColor.secondaryBG,
-                  inactiveTintColor: 'gray',
+                  inactiveTintColor: `${themeColor.contrast}99`,
                   inactiveBackgroundColor: themeColor.secondaryBG,
                   style: {borderTopColor: themeColor.primaryBG},
                 }}>

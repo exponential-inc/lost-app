@@ -23,12 +23,16 @@ const SettingsPageC = (props: any) => {
       onPress: () => {
         props.navigation.navigate('People');
       },
+      icon: 'account-multiple',
+      iconColor: themeColor.blue
     },
     {
       title: 'Theme',
       onPress: () => {
         props.navigation.navigate('Theme');
       },
+      icon: 'invert-colors',
+      iconColor: themeColor.green
     },
     {
       title: 'Privacy',
@@ -53,6 +57,8 @@ const SettingsPageC = (props: any) => {
           </View>,
         ]);
       },
+      icon: 'lock',
+      iconColor: themeColor.indigo
     },
   ];
   const list2 = [
@@ -125,6 +131,8 @@ const SettingsPageC = (props: any) => {
           </View>,
         ]);
       },
+      icon: 'information',
+      iconColor: themeColor.yellow
     },
     {
       title: 'Tell A Friend',
@@ -134,6 +142,8 @@ const SettingsPageC = (props: any) => {
           <Text style={{color: themeColor.primaryText}}>Share</Text>,
         ]);
       },
+      icon: 'share',
+      iconColor: themeColor.teal
     },
     {
       title: 'Report A Bug',
@@ -143,6 +153,8 @@ const SettingsPageC = (props: any) => {
           <Text style={{color: themeColor.primaryText}}>Report</Text>,
         ]);
       },
+      icon: 'bug',
+      iconColor: themeColor.red
     },
     {
       title: 'Leave A Review',
