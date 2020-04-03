@@ -1,8 +1,9 @@
 import React from 'react';
-import { Text } from 'react-native';
+import { Text, Dimensions } from 'react-native';
 import { Appearance } from 'react-native-appearance';
 
 const initialState = {
+  deviceSize: {width: Dimensions.get('window').width, height: Dimensions.get('window').height},
   orientation: 'portrait', //portrait/landscape
   themeMode: 'auto',
   themeNative: Appearance.getColorScheme(), // device's native theme
@@ -13,6 +14,11 @@ const initialState = {
 
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case 'UPDATE_DEVICE_SIZE':
+      return {
+        ...state,
+        deviceSize: {width: Dimensions.get('window').width, height: Dimensions.get('window').height}
+      }
     case 'TOGGLE_THEME':
       return {
         ...state,

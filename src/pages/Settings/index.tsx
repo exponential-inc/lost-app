@@ -23,12 +23,16 @@ const SettingsPageC = (props: any) => {
       onPress: () => {
         props.navigation.navigate('People');
       },
+      icon: 'account-multiple',
+      iconColor: themeColor.blue
     },
     {
       title: 'Theme',
       onPress: () => {
         props.navigation.navigate('Theme');
       },
+      icon: 'invert-colors',
+      iconColor: themeColor.green
     },
     {
       title: 'Privacy',
@@ -53,6 +57,8 @@ const SettingsPageC = (props: any) => {
           </View>,
         ]);
       },
+      icon: 'lock',
+      iconColor: themeColor.indigo
     },
   ];
   const list2 = [
@@ -125,6 +131,8 @@ const SettingsPageC = (props: any) => {
           </View>,
         ]);
       },
+      icon: 'information',
+      iconColor: themeColor.yellow
     },
     {
       title: 'Tell A Friend',
@@ -134,6 +142,8 @@ const SettingsPageC = (props: any) => {
           <Text style={{color: themeColor.primaryText}}>Share</Text>,
         ]);
       },
+      icon: 'share',
+      iconColor: themeColor.teal
     },
     {
       title: 'Report A Bug',
@@ -143,6 +153,8 @@ const SettingsPageC = (props: any) => {
           <Text style={{color: themeColor.primaryText}}>Report</Text>,
         ]);
       },
+      icon: 'bug',
+      iconColor: themeColor.red
     },
     {
       title: 'Leave A Review',
@@ -164,29 +176,8 @@ const SettingsPageC = (props: any) => {
           navigation={props.navigation}
         />
         <Layout style={{marginHorizontal: 20}}>
-<<<<<<< HEAD
-          <ViewShadow theme={props.theme} style={{height: 100, marginTop: -20}}>
-            <List
-              data={list1}
-              renderItem={renderItem}
-              scrollEnabled={false}
-              style={{borderRadius: 20, overflow: 'hidden'}}
-            />
-          </ViewShadow>
-          <ViewShadow
-            theme={props.theme}
-            style={{height: 200, marginTop: 20, marginBottom: 20}}>
-            <List
-              data={list2}
-              renderItem={renderItem}
-              scrollEnabled={false}
-              style={{overflow: 'hidden', borderRadius: 20}}
-            />
-          </ViewShadow>
-=======
           <ListCard theme={props.theme} data={list1} firstInPage/>
           <ListCard theme={props.theme} data={list2} />
->>>>>>> upstream/master
         </Layout>
       </ScrollView>
 
