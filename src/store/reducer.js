@@ -43,8 +43,6 @@ export const reducer = (state = initialState, action) => {
         theme: state.themeMode === 'auto' ? action.theme : state.theme
       }
     default:
-      return {
-        ...state
-      }
+      return state
   }
 }
