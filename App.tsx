@@ -29,6 +29,8 @@ import {SettingsThemePage} from './src/pages/SettingsTheme';
 import {FindPage} from './src/pages/Find';
 import {LandingPage} from './src/pages/Landing';
 import {SettingsPeoplePage} from './src/pages/SettingsPeople';
+import {AccountLoadingPage} from './src/pages/Loading'
+import {ManageAccountPage} from './src/pages/AccountManage'
 
 import {store} from './index.js';
 
@@ -41,6 +43,9 @@ const SettingsPageNest = () => {
       <Stack.Screen name="Settings" component={SettingsPage} />
       <Stack.Screen name="Theme" component={SettingsThemePage} />
       <Stack.Screen name="People" component={SettingsPeoplePage} />
+      <Stack.Screen name="Account" component={AccountLoadingPage} />
+      <Stack.Screen name="Signup" component={LandingPage} />
+      <Stack.Screen name="ManageAccount" component={ManageAccountPage} />
     </Stack.Navigator>
   );
 };

@@ -7,10 +7,26 @@ import {PageHeader} from '../../components/Page/PageHeader';
 import {K} from '../../store/constants';
 import Svg, {Circle, G, Path, Defs} from 'react-native-svg';
 import {View} from 'react-native';
+import auth from '@react-native-firebase/auth';
+import { GoogleSignin } from '@react-native-community/google-signin';
 
 const LandingPageC = (props: any) => {
   const themeColor = props.theme === 'dark' ? K.colors.dark : K.colors.light;
   console.log(props.deviceSize.width);
+
+  GoogleSignin.configure({
+    webClientId: '1016139682272-62ol6b1c8phm74m4p059mmutov96prhu.apps.googleusercontent.com',
+  });
+  async function onGoogleButtonPress() {
+
+    const { idToken } = await GoogleSignin.signIn();
+  
+    const googleCredential = auth.GoogleAuthProvider.credential(idToken);
+  
+    return auth().signInWithCredential(googleCredential);
+
+  }
+
 
   const SvgBackgroundGraphic = (svgProps: {isLarge?: boolean}) => (
     <View style={{position: 'absolute'}}>
@@ -41,6 +57,15 @@ const LandingPageC = (props: any) => {
 
   return (
     <Layout style={{height: '100%', backgroundColor: themeColor.linkBG}}>
+       <PageHeader
+        title="Login"
+        theme={props.theme}
+        type="small"
+        navigation={props.navigation}
+        leadingButton="arrow-left"
+        onLeadingButtonPress={() => props.navigation.navigate('Settings')}
+        style = {{zIndex: 10}}
+      />
       <SvgBackgroundGraphic isLarge />
       <SvgBackgroundGraphic />
       <View style={{justifyContent: "center", height: '100%', marginTop: 100}}>
@@ -55,17 +80,21 @@ const LandingPageC = (props: any) => {
           title="Login With Google"
           theme={props.theme}
           icon="google"
+          onPress={() => onGoogleButtonPress()}
         />
         <LoginButton
           title="Set Up Later"
           theme={props.theme}
           color={themeColor.white}
           style={{backgroundColor: `${themeColor.contrast}11`}}
+          onPress={() => props.navigation.navigate('Settings')}
         />
       </View>
     </Layout>
   );
 };
+
+
 
 const mapStateToProps = (state: any) => {
   return {
