@@ -162,7 +162,7 @@ const SettingsPageC = (props: any) => {
     },
     {
     title: 'Login',
-    onPress: () => {props.navigation.navigate('Account')},
+    onPress: () => {props.navigation.navigate('ManageAccount')},
     }
   ];
 

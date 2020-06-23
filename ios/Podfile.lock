@@ -24,6 +24,9 @@ PODS:
     - FirebaseAnalytics (= 6.5.1)
   - Firebase/CoreOnly (6.25.0):
     - FirebaseCore (= 6.7.1)
+  - Firebase/Database (6.25.0):
+    - Firebase/CoreOnly
+    - FirebaseDatabase (~> 6.2.1)
   - FirebaseAnalytics (6.5.1):
     - FirebaseCore (~> 6.7)
     - FirebaseInstallations (~> 1.2)
@@ -52,6 +55,10 @@ PODS:
     - GoogleUtilities/Logger (~> 6.5)
     - nanopb (~> 1.30905.0)
   - FirebaseCoreDiagnosticsInterop (1.2.0)
+  - FirebaseDatabase (6.2.1):
+    - FirebaseAuthInterop (~> 1.0)
+    - FirebaseCore (~> 6.0)
+    - leveldb-library (~> 1.22)
   - FirebaseInstallations (1.3.0):
     - FirebaseCore (~> 6.6)
     - GoogleUtilities/Environment (~> 6.6)
@@ -108,6 +115,7 @@ PODS:
   - GTMSessionFetcher/Core (1.4.0)
   - GTMSessionFetcher/Full (1.4.0):
     - GTMSessionFetcher/Core (= 1.4.0)
+  - leveldb-library (1.22)
   - nanopb (1.30905.0):
     - nanopb/decode (= 1.30905.0)
     - nanopb/encode (= 1.30905.0)
@@ -318,11 +326,15 @@ PODS:
     - ReactCommon/jscallinvoker (= 0.61.5)
   - RNCMaskedView (0.1.10):
     - React
-  - RNFBApp (7.1.0):
+  - RNFBApp (7.2.1):
     - Firebase/CoreOnly (~> 6.25.0)
     - React
-  - RNFBAuth (7.1.0):
+  - RNFBAuth (8.0.5):
     - Firebase/Auth (~> 6.25.0)
+    - React
+    - RNFBApp
+  - RNFBDatabase (7.2.2):
+    - Firebase/Database (~> 6.25.0)
     - React
     - RNFBApp
   - RNGestureHandler (1.6.1):
@@ -375,6 +387,7 @@ DEPENDENCIES:
   - "RNCMaskedView (from `../node_modules/@react-native-community/masked-view`)"
   - "RNFBApp (from `../node_modules/@react-native-firebase/app`)"
   - "RNFBAuth (from `../node_modules/@react-native-firebase/auth`)"
+  - "RNFBDatabase (from `../node_modules/@react-native-firebase/database`)"
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - "RNGoogleSignin (from `../node_modules/@react-native-community/google-signin`)"
   - RNReanimated (from `../node_modules/react-native-reanimated`)
@@ -394,6 +407,7 @@ SPEC REPOS:
     - FirebaseCore
     - FirebaseCoreDiagnostics
     - FirebaseCoreDiagnosticsInterop
+    - FirebaseDatabase
     - FirebaseInstallations
     - GoogleAppMeasurement
     - GoogleDataTransport
@@ -402,6 +416,7 @@ SPEC REPOS:
     - GoogleUtilities
     - GTMAppAuth
     - GTMSessionFetcher
+    - leveldb-library
     - nanopb
     - PromisesObjC
 
@@ -464,6 +479,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-firebase/app"
   RNFBAuth:
     :path: "../node_modules/@react-native-firebase/auth"
+  RNFBDatabase:
+    :path: "../node_modules/@react-native-firebase/database"
   RNGestureHandler:
     :path: "../node_modules/react-native-gesture-handler"
   RNGoogleSignin:
@@ -492,6 +509,7 @@ SPEC CHECKSUMS:
   FirebaseCore: 6023faeada5afa95a349fccafb40900e32e9ac42
   FirebaseCoreDiagnostics: 4a773a47bd83bbd5a9b1ccf1ce7caa8b2d535e67
   FirebaseCoreDiagnosticsInterop: 296e2c5f5314500a850ad0b83e9e7c10b011a850
+  FirebaseDatabase: 4e99c0c475d1ee0aa64ae2b53c93f80b7b60d7d9
   FirebaseInstallations: 6f5f680e65dc374397a483c32d1799ba822a395b
   Folly: 30e7936e1c45c08d884aa59369ed951a8e68cf51
   glog: 1f3da668190260b06b429bb211bfbee5cd790c28
@@ -502,6 +520,7 @@ SPEC CHECKSUMS:
   GoogleUtilities: 39530bc0ad980530298e9c4af8549e991fd033b1
   GTMAppAuth: 4deac854479704f348309e7b66189e604cf5e01e
   GTMSessionFetcher: 6f5c8abbab8a9bce4bb3f057e317728ec6182b10
+  leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
   nanopb: c43f40fadfe79e8b8db116583945847910cbabc9
   PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6
   RCTRequired: b153add4da6e7dbc44aebf93f3cf4fcae392ddf1
@@ -513,8 +532,8 @@ SPEC CHECKSUMS:
   React-jsi: cb2cd74d7ccf4cffb071a46833613edc79cdf8f7
   React-jsiexecutor: d5525f9ed5f782fdbacb64b9b01a43a9323d2386
   React-jsinspector: fa0ecc501688c3c4c34f28834a76302233e29dc0
-  react-native-appearance: fc2014516054585d531e07aa0b40ab0de1d2be85
-  react-native-safe-area-context: 8260e5157617df4b72865f44006797f895b2ada7
+  react-native-appearance: 0f0e5fc2fcef70e03d48c8fe6b00b9158c2ba8aa
+  react-native-safe-area-context: e200d4433aba6b7e60b52da5f37af11f7a0b0392
   React-RCTActionSheet: 600b4d10e3aea0913b5a92256d2719c0cdd26d76
   React-RCTAnimation: 791a87558389c80908ed06cc5dfc5e7920dfa360
   React-RCTBlob: d89293cc0236d9cb0933d85e430b0bbe81ad1d72
@@ -525,9 +544,10 @@ SPEC CHECKSUMS:
   React-RCTText: 9ccc88273e9a3aacff5094d2175a605efa854dbe
   React-RCTVibration: a49a1f42bf8f5acf1c3e297097517c6b3af377ad
   ReactCommon: 198c7c8d3591f975e5431bec1b0b3b581aa1c5dd
-  RNCMaskedView: f5c7d14d6847b7b44853f7acb6284c1da30a3459
-  RNFBApp: 25a6476dfd7aac2bcbe984f569875bcea122895b
-  RNFBAuth: 52e7af4244e6adf39237ab8e94d6d51f2c1bf450
+  RNCMaskedView: 5a8ec07677aa885546a0d98da336457e2bea557f
+  RNFBApp: def13f6392e7c9839c938879f065ec0088c4496a
+  RNFBAuth: da10602d9f8644a1669d824c862e7321b1f0fc9e
+  RNFBDatabase: d23f1e3e98eb7b7afd883312316edb5adf2efb0b
   RNGestureHandler: 8f09cd560f8d533eb36da5a6c5a843af9f056b38
   RNGoogleSignin: ccf71ee4b6cfd324fd788a41e457e2043838c0d9
   RNReanimated: b5ccb50650ba06f6e749c7c329a1bc3ae0c88b43

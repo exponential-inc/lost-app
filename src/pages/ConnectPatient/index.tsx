@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import {Layout, Text} from '@ui-kitten/components';
 import {connect} from 'react-redux';
 
@@ -6,62 +6,30 @@ import {LoginButton} from '../../components/Button/Login';
 import {PageHeader} from '../../components/Page/PageHeader';
 import {K} from '../../store/constants';
 import Svg, {Circle, G, Path, Defs} from 'react-native-svg';
-import {View} from 'react-native';
+import {View, Platform} from 'react-native';
+import firebase from '@react-native-firebase/app'
+import database from '@react-native-firebase/database'
 import auth from '@react-native-firebase/auth';
-import { GoogleSignin } from '@react-native-community/google-signin';
+import base64 from 'react-native-base64'
 
-const LandingPageC = (props: any) => {
+
+const ConnectPatientPageC = (props: any) => {
+  const globalAny:any = global;
+  const themeFont = Platform.OS === 'ios' ? K.fonts.ios : K.fonts.android;
   const themeColor = props.theme === 'dark' ? K.colors.dark : K.colors.light;
   console.log(props.deviceSize.width);
-  var loggedIn = null
+  const user = firebase.auth().currentUser;
+  globalAny.code = 123456
+  const dbRef = `/codeStore/${globalAny.code}`
+  globalAny.type = 'patient'
+
+  database()
+  .ref(dbRef)
+  .set({
+    email: user.email
+ })
+
   
-
-  const [initializing, setInitializing] = useState(true);
-  const [user, setUser] = useState();
-
-  // Handle user state changes
-  function onAuthStateChanged(user) {
-    setUser(user);
-    if (initializing) setInitializing(false);
-  }
-
-  useEffect(() => {
-    const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
-    return subscriber; // unsubscribe on unmount
-  }, []);
-
-  if (initializing) return null;
-
-  if (!user) {
-    loggedIn = false
-  }else if (user){
-    loggedIn = true  
-  }
-
-
-
-
-
-
-
-
-
-
-
-  GoogleSignin.configure({
-    webClientId: '1016139682272-62ol6b1c8phm74m4p059mmutov96prhu.apps.googleusercontent.com',
-  });
-  async function onGoogleButtonPress() {
-
-    const { idToken } = await GoogleSignin.signIn();
-  
-    const googleCredential = auth.GoogleAuthProvider.credential(idToken);
-  
-    return auth().signInWithCredential(googleCredential);
-
-  }
-
-
   const SvgBackgroundGraphic = (svgProps: {isLarge?: boolean}) => (
     <View style={{position: 'absolute'}}>
       <Svg
@@ -88,32 +56,17 @@ const LandingPageC = (props: any) => {
       </Svg>
     </View>
   );
-if (loggedIn == false){
+
+
   return (
     <Layout style={{height: '100%', backgroundColor: themeColor.linkBG}}>
-      <SvgBackgroundGraphic isLarge />
-      <SvgBackgroundGraphic />
-      <View style={{justifyContent: "center", height: '100%', marginTop: 100}}>
-        <LoginButton
-          title="Login With Apple"
-          theme={props.theme}
-          icon="apple"
-          style={{backgroundColor: themeColor.black}}
-          color={themeColor.lightText}
-        />
-        <LoginButton
-          title="Login With Google"
-          theme={props.theme}
-          icon="google"
-          onPress={() => onGoogleButtonPress()}
-        />
-      </View>
-    </Layout>
-  );}
-  if (loggedIn == true){
-    props.navigation.navigate('dbExistCheck')
-    return null;
-  }
+            <SvgBackgroundGraphic isLarge />
+          <SvgBackgroundGraphic />
+          <View style={{justifyContent: "center", height: '100%', marginTop: 100}}>
+  <Text style={{textAlign:'center', marginTop:-280, ...themeFont.subheadE, color: themeColor.lightText}}><Text style={{...themeFont.smallTitleE, color: themeColor.lightText}}>Your code is </Text><Text style={{fontWeight: "bold", ...themeFont.smallTitleE, color: themeColor.contrast,}}>{globalAny.code}</Text><Text style={{...themeFont.smallTitleE, color: themeColor.lightText}}> {"\n"} Key this code into you're caretaker's phone</Text></Text>
+          </View>
+        </Layout>
+  );
 };
 
 
@@ -129,7 +82,7 @@ const mapDispatchToProps = (dispatch: any) => {
   return {};
 };
 
-export const LandingPage = connect(
+export const ConnectPatientPage = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(LandingPageC);
+)(ConnectPatientPageC);
