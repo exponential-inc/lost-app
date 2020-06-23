@@ -32,7 +32,7 @@ const App = (props: any) => {
   if (!user) {
     props.navigation.navigate('Signup');
   }else if (user){
-    props.navigation.navigate('ManageAccount');
+    props.navigation.navigate('Home');
   }
   return null;
 }

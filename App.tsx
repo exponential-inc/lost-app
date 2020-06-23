@@ -12,6 +12,8 @@ import React, {Fragment} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createStackNavigator} from '@react-navigation/stack';
+import firebase from '@react-native-firebase/app'
+import AsyncStorage from '@react-native-community/async-storage';
 
 import {connect} from 'react-redux';
 import {AppearanceProvider, Appearance} from 'react-native-appearance';
@@ -19,6 +21,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {ApplicationProvider, Layout} from '@ui-kitten/components';
 import {mapping, light as lightTheme, dark as darkTheme} from '@eva-design/eva';
 import {SafeAreaView, View, Dimensions} from 'react-native';
+
 // import AsyncStorage from '@react-native-community/async-storage';
 
 import {K} from './src/store/constants';
@@ -31,6 +34,10 @@ import {LandingPage} from './src/pages/Landing';
 import {SettingsPeoplePage} from './src/pages/SettingsPeople';
 import {AccountLoadingPage} from './src/pages/Loading'
 import {ManageAccountPage} from './src/pages/AccountManage'
+import {InfoPage} from './src/pages/Info'
+import {ConnectPatientPage} from './src/pages/ConnectPatient'
+import {dbExistCheck} from './src/pages/dbExistCheck'
+import {ConnectCaretakerPage} from './src/pages/ConnectCaretaker'
 
 import {store} from './index.js';
 
@@ -49,6 +56,20 @@ const SettingsPageNest = () => {
     </Stack.Navigator>
   );
 };
+const HomePageNest = () =>{
+  return(
+  <Stack.Navigator initialRouteName="Home" headerMode="none">
+  <Stack.Screen name="Home" component={HomePage} />
+  <Stack.Screen name="Signup" component={LandingPage} />
+  <Stack.Screen name="POrC" component={InfoPage} />
+  <Stack.Screen name="ConnectPatient" component={ConnectPatientPage} />
+  <Stack.Screen name="ConnectCaretaker" component={ConnectCaretakerPage} />
+  <Stack.Screen name="dbExistCheck" component={dbExistCheck} />
+</Stack.Navigator>
+);
+}
+
+
 
 Appearance.addChangeListener(({colorScheme}) => {
   store.dispatch({type: 'SET_THEME_NATIVE', theme: colorScheme});
@@ -74,6 +95,18 @@ const App = (props: any) => {
   // };
   // console.log(getSaved().retrivedObject);
   const themeColor = props.theme === 'dark' ? K.colors.dark : K.colors.light;
+
+  var config = {
+    appId: "1:1016139682272:web:af60239d579fba6ab55b85",
+    databaseURL: "https://lost-app-15eb8.firebaseio.com",
+    projectId: "lost-app-15eb8",
+    };
+  firebase.initializeApp(config);
+  if (!firebase.apps.length) {
+  firebase.initializeApp(config);
+  }
+  
+  
   return (
     <AppearanceProvider>
       <Fragment>
@@ -129,7 +162,7 @@ const App = (props: any) => {
                   style: {borderTopColor: themeColor.primaryBG},
                 }}>
                 <Tab.Screen name="Find" component={LandingPage} />
-                <Tab.Screen name="Home" component={HomePage} />
+                <Tab.Screen name="Home" component={HomePageNest} />
                 <Tab.Screen name="Settings" component={SettingsPageNest} />
               </Tab.Navigator>
             </NavigationContainer>
@@ -137,8 +170,8 @@ const App = (props: any) => {
         </SafeAreaView>
       </Fragment>
     </AppearanceProvider>
-  );
-};
+  );}
+  
 
 const mapStateToProps = (state: any) => {
   return {
