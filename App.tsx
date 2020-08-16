@@ -101,7 +101,6 @@ const App = (props: any) => {
     databaseURL: "https://lost-app-15eb8.firebaseio.com",
     projectId: "lost-app-15eb8",
     };
-  firebase.initializeApp(config);
   if (!firebase.apps.length) {
   firebase.initializeApp(config);
   }
